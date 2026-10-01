@@ -1,0 +1,3130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEM TOURS &amp; Travellers — Car Hire, Safaris &amp; Travel Services | Nakuru, Kenya</title>
+<meta name="description" content="PEM TOURS &amp; Travellers — Car hire, safari packages, airport transfers, hotels and air ticketing across Kenya. Based in Nakuru. Your classy travelling partner since 2013.">
+<meta name="theme-color" content="#080314">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="images/hero-1-704.webp" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600;700&display=swap"></noscript>
+<style>
+/* ============================================================
+   PEM TOURS & TRAVELLERS — DESIGN TOKENS
+   ============================================================ */
+:root{
+  --purple:#7B2FBE; --purple2:#a855f7; --purple3:#c084fc;
+  --green:#1a3d22;  --green2:#2d6b2d;  --green3:#3d8b3d;
+  --cream:#f5f0ff;  --sand:#fdf9f3;   --dark:#0d0d1a;
+  --ink:#1a1a2e;    --muted:#6b6b8a;  --white:#fff;
+  --gold:#c9a227;
+  --radius:14px;
+  --shadow:0 8px 40px rgba(123,47,190,0.15);
+  --shadow-lg:0 24px 80px rgba(0,0,0,0.28);
+  --max:1200px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:84px;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+ul{list-style:none;}
+button{font-family:'Jost',sans-serif;}
+.container{max-width:var(--max);margin:0 auto;}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 40px;
+  background:rgba(8,3,20,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(123,47,190,0.22);
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-logo{
+  height:56px;width:auto;
+  filter:drop-shadow(0 0 14px rgba(168,85,247,0.45));
+  transition:filter .3s;
+}
+.brand-logo:hover{filter:drop-shadow(0 0 24px rgba(168,85,247,.75));}
+.brand-text h2{
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#fff;
+  font-weight:700;letter-spacing:.04em;line-height:1.1;
+}
+.brand-text span{
+  display:block;font-size:.56rem;color:var(--purple3);
+  letter-spacing:.22em;text-transform:uppercase;margin-top:2px;
+}
+nav{display:flex;align-items:center;}
+nav a.navlink{
+  color:rgba(255,255,255,.72);font-size:.77rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;margin-left:22px;
+  transition:color .2s;position:relative;
+}
+nav a.navlink::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
+  background:var(--purple2);transform:scaleX(0);transform-origin:left;
+  transition:transform .25s;
+}
+nav a.navlink:hover{color:var(--purple2);}
+nav a.navlink:hover::after{transform:scaleX(1);}
+.nav-book{
+  margin-left:20px;padding:10px 22px;
+  background:linear-gradient(135deg,var(--purple),var(--green));
+  color:#fff!important;border-radius:5px;font-weight:700!important;
+  font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:all .22s;display:inline-block;
+}
+.nav-book:hover{background:linear-gradient(135deg,var(--purple2),var(--green2));transform:translateY(-1px);box-shadow:0 8px 24px rgba(123,47,190,.4);}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  padding:6px;background:none;border:none;z-index:400;margin-left:14px;
+}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{
+  display:none;position:fixed;inset:0;background:rgba(6,2,16,.98);
+  z-index:350;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  color:#fff;font-size:1.55rem;font-family:'Cormorant Garamond',serif;
+  font-weight:700;transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--purple2);}
+.mob-close{position:absolute;top:22px;right:22px;font-size:28px;color:#fff;cursor:pointer;background:none;border:none;}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100vh;position:relative;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;overflow:hidden;text-align:center;
+  padding:120px 20px 90px;
+}
+.hero-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  background-repeat:no-repeat;transition:opacity 1.6s ease;z-index:0;
+  background-color:#140a24;
+}
+.hero-bg.active{opacity:1;}
+.hero-bg.inactive{opacity:0;}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(20,5,45,.35) 0%, transparent 70%),
+    linear-gradient(165deg, rgba(24,3,48,.72) 0%, rgba(3,20,7,.78) 100%);
+}
+.slide-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:48px;height:48px;background:rgba(255,255,255,.09);
+  border:1.5px solid rgba(255,255,255,.22);border-radius:50%;color:#fff;
+  font-size:18px;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;backdrop-filter:blur(8px);transition:all .25s;
+}
+.slide-arrow:hover{background:rgba(123,47,190,.5);border-color:var(--purple2);transform:translateY(-50%) scale(1.08);}
+.slide-arrow.prev{left:24px;}
+.slide-arrow.next{right:24px;}
+.hero-content{position:relative;z-index:2;max-width:900px;animation:fadeUp 1.1s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(34px);}to{opacity:1;transform:translateY(0);}}
+.hero-logo-wrap{margin-bottom:22px;animation:fadeUp 1s .1s ease both;}
+.hero-logo-img{
+  width:180px;height:auto;margin:0 auto;
+  animation:logoPulse 3.5s ease-in-out infinite;
+}
+@keyframes logoPulse{
+  0%,100%{filter:drop-shadow(0 0 26px rgba(168,85,247,.55)) drop-shadow(0 4px 18px rgba(0,0,0,.65));}
+  50%{filter:drop-shadow(0 0 48px rgba(168,85,247,.85)) drop-shadow(0 4px 28px rgba(123,47,190,.45));}
+}
+.hero-eyebrow{
+  display:inline-block;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--purple3);border:1px solid rgba(168,85,247,.35);
+  padding:7px 20px;border-radius:50px;margin-bottom:20px;
+  animation:fadeUp 1s .2s ease both;backdrop-filter:blur(6px);
+  background:rgba(123,47,190,.1);
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,6.6vw,5.1rem);
+  color:#fff;font-weight:700;line-height:1.05;margin-bottom:18px;
+  letter-spacing:-.01em;text-shadow:0 4px 32px rgba(0,0,0,.5);
+  animation:fadeUp 1s .35s ease both;
+}
+.hero h1 em{color:#86efac;font-style:normal;}
+.hero-tags{
+  display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;
+  margin-bottom:22px;animation:fadeUp 1s .5s ease both;
+}
+.hero-tags span{
+  color:rgba(255,255,255,.8);font-size:.76rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;position:relative;
+}
+.hero-tags span:not(:last-child)::after{
+  content:'•';position:absolute;right:-15px;color:var(--purple3);
+}
+.hero p.lede{
+  color:rgba(255,255,255,.76);font-size:1.03rem;max-width:600px;
+  margin:0 auto 34px;font-weight:300;line-height:1.75;
+  animation:fadeUp 1s .62s ease both;
+}
+.hero-btns{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 1s .78s ease both;
+}
+.hero-est{
+  margin-top:30px;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,255,255,.42);animation:fadeUp 1s .92s ease both;
+}
+.hero-slide-caption{position:absolute;bottom:86px;left:50%;transform:translateX(-50%);z-index:2;text-align:center;padding:0 20px;}
+#slideLabel{color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:600;letter-spacing:.05em;transition:opacity .4s;text-shadow:0 2px 10px rgba(0,0,0,.6);}
+#slideSub{color:rgba(255,255,255,.6);font-size:.75rem;margin-top:4px;transition:opacity .4s;letter-spacing:.05em;}
+.slide-dots{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);z-index:2;display:flex;gap:8px;}
+.slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:all .3s;border:1.5px solid rgba(255,255,255,.4);}
+.slide-dot.active{background:#fff;width:24px;border-radius:4px;}
+.hero-scroll{
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;
+  color:rgba(255,255,255,.35);font-size:.62rem;letter-spacing:.22em;
+  text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-line{width:1px;height:38px;background:linear-gradient(to bottom,rgba(168,85,247,.7),transparent);animation:scrollPulse 2s infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary{
+  padding:15px 36px;background:linear-gradient(135deg,var(--purple),var(--green));
+  color:#fff;border:none;border-radius:5px;font-weight:700;font-size:.84rem;
+  cursor:pointer;letter-spacing:.09em;text-transform:uppercase;font-family:'Jost',sans-serif;
+  transition:all .25s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn-primary:hover{background:linear-gradient(135deg,var(--purple2),var(--green2));transform:translateY(-2px);box-shadow:0 10px 32px rgba(123,47,190,.45);}
+.btn-ghost{
+  padding:15px 36px;background:rgba(255,255,255,.06);color:#fff;
+  border:1.5px solid rgba(255,255,255,.35);border-radius:5px;font-weight:600;
+  font-size:.84rem;cursor:pointer;text-transform:uppercase;letter-spacing:.09em;
+  font-family:'Jost',sans-serif;transition:all .25s;display:inline-flex;align-items:center;gap:9px;
+  backdrop-filter:blur(6px);
+}
+.btn-ghost:hover{border-color:var(--purple2);color:#fff;background:rgba(123,47,190,.28);transform:translateY(-2px);}
+.btn-whatsapp{
+  padding:15px 34px;background:#25D366;color:#fff;border:none;border-radius:5px;
+  font-weight:700;font-size:.84rem;cursor:pointer;letter-spacing:.09em;
+  text-transform:uppercase;transition:all .25s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn-whatsapp:hover{background:#1ebe5b;transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.4);}
+.btn-white{
+  padding:14px 34px;background:#fff;color:var(--purple);border:none;border-radius:5px;
+  font-weight:700;font-size:.83rem;cursor:pointer;letter-spacing:.09em;
+  text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn-white:hover{background:#f0e8ff;transform:translateY(-2px);}
+.btn-white-outline{
+  padding:14px 34px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);
+  border-radius:5px;font-weight:700;font-size:.83rem;cursor:pointer;letter-spacing:.09em;
+  text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn-white-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px);}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-strip{
+  background:linear-gradient(135deg,#1a0438,#0c1c0d);
+  display:flex;justify-content:center;flex-wrap:wrap;
+  border-bottom:1px solid rgba(123,47,190,.18);
+}
+.stat{
+  flex:1;min-width:130px;text-align:center;padding:30px 20px;
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#86efac;font-weight:700;line-height:1;}
+.stat-label{font-size:.66rem;color:rgba(255,255,255,.42);letter-spacing:.16em;text-transform:uppercase;margin-top:6px;}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.section{padding:92px 40px;}
+.section-dark{background:linear-gradient(135deg,#0e0422,#060e07);}
+.section-cream{background:var(--cream);}
+.section-sand{background:var(--sand);}
+.section-header{text-align:center;margin-bottom:52px;max-width:720px;margin-left:auto;margin-right:auto;}
+.sec-label{font-size:.69rem;letter-spacing:.28em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:12px;}
+.sec-label-light{color:var(--purple3);}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;color:var(--ink);line-height:1.12;
+}
+.sec-title-light{color:#f0deb8;}
+.sec-sub{color:var(--muted);font-size:.94rem;margin-top:14px;}
+.sec-sub-light{color:rgba(255,255,255,.52);}
+.section-cta{text-align:center;margin-top:48px;}
+
+/* ============================================================
+   WHAT WE DO  (3 primary cards)
+   ============================================================ */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.pillar{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:32px 28px;border:1px solid rgba(123,47,190,.18);
+  background:linear-gradient(160deg,#1d0838,#0a1a0c);
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.pillar:hover{transform:translateY(-6px);border-color:rgba(168,85,247,.45);box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.pillar-img{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:.42;transition:opacity .4s,transform .6s;
+}
+.pillar:hover .pillar-img{opacity:.55;transform:scale(1.05);}
+.pillar::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,2,24,.15) 0%,rgba(10,2,24,.88) 78%);
+}
+.pillar-icon{position:relative;z-index:2;font-size:2.3rem;margin-bottom:14px;}
+.pillar-title{
+  position:relative;z-index:2;font-family:'Cormorant Garamond',serif;
+  font-size:1.7rem;font-weight:700;color:#fff;margin-bottom:8px;
+}
+.pillar-text{position:relative;z-index:2;color:rgba(255,255,255,.62);font-size:.87rem;line-height:1.7;margin-bottom:18px;}
+.pillar-link{
+  position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;
+  color:#86efac;font-size:.76rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;transition:gap .2s;
+}
+.pillar-link:hover{gap:13px;}
+
+/* service mini chips */
+.mini-services{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px;
+}
+.mini-chip{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 18px;
+  border-radius:50px;border:1px solid rgba(123,47,190,.28);
+  background:rgba(123,47,190,.07);color:rgba(255,255,255,.78);
+  font-size:.78rem;font-weight:500;transition:all .2s;
+}
+.mini-chip:hover{background:rgba(123,47,190,.2);border-color:var(--purple2);color:#fff;}
+
+/* ============================================================
+   SAFARI CARDS
+   ============================================================ */
+.tours-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.tour-card{
+  background:#150a2b;border-radius:var(--radius);overflow:hidden;
+  border:1px solid rgba(123,47,190,.16);transition:all .3s;
+  display:flex;flex-direction:column;
+}
+.tour-card:hover{transform:translateY(-6px);border-color:rgba(168,85,247,.42);box-shadow:0 20px 50px rgba(0,0,0,.45);}
+.tour-banner{
+  height:170px;position:relative;background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center;font-size:3.4rem;
+  background-color:#241040;
+}
+.tour-banner-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,3,20,.1) 0%,rgba(8,3,20,.72) 100%);}
+.tour-nights-badge{
+  position:absolute;top:14px;right:14px;background:var(--purple);color:#fff;
+  font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 13px;border-radius:50px;z-index:2;
+}
+.tour-body{padding:22px;display:flex;flex-direction:column;flex:1;}
+.tour-name{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.tour-dest{font-size:.72rem;color:var(--purple3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.tour-includes{margin-bottom:18px;flex:1;}
+.tour-includes li{
+  font-size:.81rem;color:rgba(255,255,255,.6);padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;
+}
+.tour-includes li::before{content:'✓';color:#86efac;font-weight:700;font-size:.75rem;}
+.tour-price-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.tour-price{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:700;color:#f0deb8;}
+.tour-per{display:block;font-family:'Jost',sans-serif;font-size:.66rem;color:rgba(255,255,255,.42);font-weight:400;letter-spacing:.06em;}
+.book-tour-btn{
+  padding:10px 20px;background:var(--purple);color:#fff;border:none;border-radius:5px;
+  font-size:.74rem;font-weight:700;cursor:pointer;letter-spacing:.08em;
+  text-transform:uppercase;transition:all .2s;
+}
+.book-tour-btn:hover{background:var(--purple2);transform:translateY(-2px);}
+
+/* ============================================================
+   DESTINATIONS
+   ============================================================ */
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.dest-card{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  min-height:230px;display:flex;align-items:flex-end;
+  padding:22px;cursor:pointer;background-color:#1c0a33;
+  transition:transform .35s,box-shadow .35s;
+}
+.dest-card:nth-child(1){grid-column:span 2;min-height:300px;}
+.dest-card:nth-child(2){grid-column:span 2;min-height:300px;}
+.dest-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4);}
+.dest-img{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  transition:transform .7s ease;
+}
+.dest-card:hover .dest-img{transform:scale(1.07);}
+.dest-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,3,20,.05) 30%,rgba(8,3,20,.85) 100%);
+}
+.dest-info{position:relative;z-index:2;}
+.dest-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:#fff;line-height:1.15;}
+.dest-sub{font-size:.76rem;color:rgba(255,255,255,.68);margin-top:3px;letter-spacing:.04em;}
+.dest-tag{
+  display:inline-block;margin-top:10px;font-size:.64rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:#86efac;
+}
+
+/* ============================================================
+   FLEET
+   ============================================================ */
+.filter-bar{display:flex;justify-content:center;gap:10px;margin-bottom:40px;flex-wrap:wrap;}
+.filter-btn{
+  padding:9px 24px;border:1.5px solid #ddd;background:#fff;border-radius:50px;
+  font-size:.79rem;cursor:pointer;font-family:'Jost',sans-serif;color:var(--muted);
+  transition:all .2s;font-weight:600;
+}
+.filter-btn.active,.filter-btn:hover{border-color:var(--purple);color:var(--ink);background:rgba(123,47,190,.06);}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:24px;}
+.card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 3px 22px rgba(0,0,0,.07);
+  transition:transform .3s,box-shadow .3s;position:relative;
+  display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+.card-badge{
+  position:absolute;top:14px;left:14px;z-index:3;background:var(--green);color:#fff;
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 12px;border-radius:50px;
+}
+.card-badge.popular{background:var(--purple);}
+.card-badge.new{background:#2d5a3d;}
+.card-img-wrap{height:172px;position:relative;overflow:hidden;background:linear-gradient(135deg,#28094a,#0f2c10);}
+.card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;}
+.card:hover .card-img{transform:scale(1.06);}
+.card-img-label{
+  position:absolute;left:0;right:0;bottom:0;padding:24px 12px 8px;
+  background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,0));
+  font-family:'Cormorant Garamond',serif;font-size:1.06rem;font-weight:700;
+  color:#fff;text-align:center;
+}
+.card-body{padding:20px;display:flex;flex-direction:column;flex:1;}
+.card-specs{margin-bottom:12px;line-height:1.9;}
+.card-specs span{
+  display:inline-block;margin-right:6px;padding:3px 10px;background:#f3f0ff;
+  border-radius:5px;font-size:.72rem;color:var(--purple);font-weight:500;
+}
+.card-desc{font-size:.79rem;color:var(--muted);line-height:1.6;margin-bottom:16px;flex:1;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f0f0f0;padding-top:15px;gap:10px;flex-wrap:wrap;}
+.card-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ink);font-weight:700;line-height:1;}
+.card-price small{font-family:'Jost',sans-serif;font-size:.68rem;color:var(--muted);font-weight:400;}
+.card-actions{display:flex;gap:8px;}
+.btn-card{
+  padding:9px 18px;background:var(--purple);color:#fff;border:none;border-radius:5px;
+  font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.05em;
+}
+.btn-card:hover{background:var(--purple2);transform:translateY(-1px);}
+.btn-card-outline{
+  padding:9px 15px;background:transparent;color:var(--purple);border:1.5px solid var(--purple);
+  border-radius:5px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.btn-card-outline:hover{background:rgba(123,47,190,.08);}
+
+/* ============================================================
+   WHY / HOW
+   ============================================================ */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.why-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);padding:28px 24px;transition:all .3s;
+}
+.why-card:hover{background:rgba(123,47,190,.1);border-color:rgba(168,85,247,.3);transform:translateY(-4px);}
+.why-icon{font-size:1.8rem;margin-bottom:14px;}
+.why-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#f0deb8;margin-bottom:8px;}
+.why-text{color:rgba(255,255,255,.5);font-size:.84rem;line-height:1.68;}
+
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative;}
+.step{text-align:center;padding:34px 24px;position:relative;}
+.step-num{
+  font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:700;
+  color:transparent;-webkit-text-stroke:1.5px rgba(123,47,190,.45);
+  line-height:1;margin-bottom:14px;
+}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.42rem;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.step-text{color:var(--muted);font-size:.88rem;line-height:1.7;max-width:280px;margin:0 auto;}
+.step:not(:last-child)::after{
+  content:'→';position:absolute;top:44px;right:-14px;font-size:1.5rem;
+  color:rgba(123,47,190,.3);
+}
+
+/* ============================================================
+   REVIEWS
+   ============================================================ */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.review-card{
+  background:rgba(255,255,255,.045);border:1px solid rgba(123,47,190,.18);
+  border-radius:var(--radius);padding:30px 26px;transition:all .3s;
+  display:flex;flex-direction:column;
+}
+.review-card:hover{background:rgba(123,47,190,.09);border-color:rgba(168,85,247,.35);transform:translateY(-4px);}
+.review-stars{color:var(--gold);letter-spacing:3px;font-size:.95rem;margin-bottom:14px;}
+.review-quote{
+  color:rgba(255,255,255,.78);font-size:.92rem;line-height:1.75;
+  font-style:italic;flex:1;margin-bottom:18px;
+}
+.review-quote::before{content:'“';color:var(--purple3);font-size:1.6rem;font-family:'Cormorant Garamond',serif;line-height:0;vertical-align:-6px;margin-right:3px;}
+.review-quote::after{content:'”';color:var(--purple3);font-size:1.6rem;font-family:'Cormorant Garamond',serif;line-height:0;vertical-align:-6px;margin-left:3px;}
+.review-author{display:flex;align-items:center;gap:12px;}
+.review-avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--green));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:.92rem;letter-spacing:.02em;
+}
+.review-name{color:#fff;font-weight:600;font-size:.88rem;}
+.review-meta{color:rgba(255,255,255,.42);font-size:.72rem;}
+
+/* ============================================================
+   AI GUIDE
+   ============================================================ */
+#ai-assistant{padding:92px 40px;background:var(--sand);}
+.chat-wrapper{max-width:760px;margin:0 auto;}
+.chat-box{background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;}
+.chat-header{
+  background:linear-gradient(135deg,#3a0965,#0f2c10);padding:20px 26px;
+  display:flex;align-items:center;gap:14px;
+}
+.chat-avatar{
+  width:44px;height:44px;background:var(--purple);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.chat-header-info h3{color:#fff;font-size:.97rem;font-weight:700;}
+.chat-header-info p{color:var(--purple3);font-size:.71rem;margin-top:2px;}
+.online-dot{
+  width:7px;height:7px;background:#4ade80;border-radius:50%;
+  display:inline-block;margin-right:5px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.chat-messages{
+  height:350px;overflow-y:auto;padding:22px;display:flex;
+  flex-direction:column;gap:14px;background:#fdfcff;
+}
+.chat-messages::-webkit-scrollbar{width:5px;}
+.chat-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:5px;}
+.msg{display:flex;gap:10px;max-width:86%;}
+.msg.bot{align-self:flex-start;}
+.msg.user{align-self:flex-end;flex-direction:row-reverse;}
+.msg-avatar{
+  width:34px;height:34px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.msg.bot .msg-avatar{background:var(--purple);}
+.msg.user .msg-avatar{background:var(--green2);}
+.msg-bubble{padding:12px 16px;border-radius:14px;font-size:.87rem;line-height:1.6;}
+.msg.bot .msg-bubble{background:#f5f0ff;color:var(--ink);border-bottom-left-radius:4px;}
+.msg.user .msg-bubble{background:var(--purple);color:#fff;border-bottom-right-radius:4px;}
+.typing-indicator{
+  display:none;align-items:center;gap:5px;padding:12px 16px;background:#f5f0ff;
+  border-radius:14px;border-bottom-left-radius:4px;width:fit-content;margin-left:44px;
+}
+.typing-indicator.show{display:flex;}
+.typing-dot{width:7px;height:7px;background:#bbb;border-radius:50%;animation:typingBounce 1.2s infinite;}
+.typing-dot:nth-child(2){animation-delay:.2s;}
+.typing-dot:nth-child(3){animation-delay:.4s;}
+@keyframes typingBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:8px;padding:14px 22px 6px;background:#fff;}
+.suggestion-chip{
+  padding:8px 16px;border:1.5px solid rgba(123,47,190,.22);background:var(--cream);
+  border-radius:50px;font-size:.75rem;cursor:pointer;color:var(--purple);
+  font-weight:600;transition:all .2s;
+}
+.suggestion-chip:hover{background:#ede0ff;border-color:var(--purple);transform:translateY(-1px);}
+.chat-input-row{display:flex;gap:10px;padding:14px 20px 20px;border-top:1px solid #f0e8ff;background:#fff;}
+.chat-input{
+  flex:1;padding:12px 18px;border:1.5px solid #e8e0f0;border-radius:50px;
+  font-size:.87rem;font-family:'Jost',sans-serif;outline:none;transition:border .2s;
+}
+.chat-input:focus{border-color:var(--purple);}
+.chat-send{
+  width:44px;height:44px;background:var(--purple);color:#fff;border:none;
+  border-radius:50%;font-size:16px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;
+}
+.chat-send:hover{background:var(--purple2);transform:scale(1.07);}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.about-visual{position:relative;border-radius:18px;overflow:hidden;min-height:420px;background:linear-gradient(135deg,#28094a,#0f2c10);}
+.about-visual-img{position:absolute;inset:0;background-size:cover;background-position:center;}
+.about-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,4,45,.25),rgba(6,20,8,.5));}
+.about-badge{
+  position:absolute;bottom:26px;left:26px;z-index:2;background:rgba(255,255,255,.96);
+  border-radius:12px;padding:16px 22px;box-shadow:0 12px 40px rgba(0,0,0,.3);
+}
+.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--purple);line-height:1;}
+.about-badge-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.about-copy .sec-label{text-align:left;}
+.about-copy h2{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.4vw,2.7rem);
+  font-weight:700;line-height:1.15;margin-bottom:20px;
+}
+.about-copy p{color:var(--muted);font-size:.95rem;line-height:1.85;margin-bottom:16px;}
+.about-points{margin:26px 0 30px;}
+.about-points li{
+  display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;
+  font-size:.89rem;color:var(--ink);
+}
+.about-points li::before{
+  content:'✓';flex-shrink:0;width:20px;height:20px;border-radius:50%;
+  background:rgba(45,107,45,.12);color:var(--green2);font-size:.7rem;
+  font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px;
+}
+
+/* ============================================================
+   FORMS / BOOKING
+   ============================================================ */
+.forms-section{background:linear-gradient(135deg,#160430 0%,#091e0a 100%);padding:92px 40px;}
+.form-tabs{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:32px;
+  max-width:780px;margin-left:auto;margin-right:auto;
+}
+.form-tab{
+  padding:12px 6px;text-align:center;cursor:pointer;font-size:.65rem;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.55);border:1.5px solid rgba(123,47,190,.3);
+  border-radius:9px;transition:all .2s;line-height:1.35;
+}
+.form-tab:hover{border-color:var(--purple2);color:#fff;}
+.form-tab.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+.booking-form-panel{display:none;}
+.booking-form-panel.active{display:block;}
+.booking-card{
+  background:#fff;border-radius:18px;padding:38px 42px;max-width:680px;
+  margin:0 auto;box-shadow:var(--shadow-lg);
+}
+.form-subhead{
+  font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:700;
+  color:var(--purple);margin:28px 0 16px;padding-bottom:9px;
+  border-bottom:1px solid #eee0fa;
+}
+.form-subhead:first-child{margin-top:0;}
+.car-selected-banner{
+  background:linear-gradient(135deg,#28094a,#0f2c10);color:#fff;border-radius:10px;
+  padding:15px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;
+  font-weight:500;font-size:.87rem;flex-wrap:wrap;
+}
+.car-selected-banner .price-tag{
+  margin-left:auto;background:var(--purple);color:#fff;font-weight:700;
+  padding:5px 15px;border-radius:50px;font-size:.78rem;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:18px;}
+.form-group label{
+  display:block;font-size:.69rem;font-weight:700;color:var(--muted);
+  letter-spacing:.09em;text-transform:uppercase;margin-bottom:8px;
+}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:13px 16px;border:1.5px solid #e8e0f0;border-radius:9px;
+  font-size:.89rem;font-family:'Jost',sans-serif;color:var(--ink);
+  transition:border .2s;background:#fafaff;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  outline:none;border-color:var(--purple);background:#fff;
+}
+.form-group input[readonly]{background:#f0fff4;color:var(--green2);font-weight:700;border-color:#c3e6cc;}
+.field-hint{font-size:.72rem;color:var(--muted);margin:-12px 0 18px;line-height:1.45;}
+.terms-box{background:#faf8ff;border:1px solid #e8e0f0;border-radius:10px;padding:4px 18px;margin-bottom:20px;}
+.terms-box summary{
+  cursor:pointer;padding:13px 0;font-size:.8rem;font-weight:700;color:var(--purple);
+  letter-spacing:.03em;list-style:none;
+}
+.terms-box summary::-webkit-details-marker{display:none;}
+.terms-box summary::before{content:'▸\2002';}
+.terms-box[open] summary::before{content:'▾\2002';}
+.terms-box ol{margin:0 0 14px 18px;font-size:.76rem;color:var(--muted);line-height:1.7;}
+.terms-box ol li{margin-bottom:6px;}
+.terms-box .fee-note{font-size:.76rem;color:#a33;font-weight:600;margin:0 0 14px;}
+.consent-row{
+  display:flex;gap:11px;align-items:flex-start;font-size:.8rem;color:var(--ink);
+  line-height:1.55;margin-bottom:22px;
+}
+.consent-row input[type=checkbox]{margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--purple);}
+.total-box{
+  background:var(--cream);border:1px solid rgba(123,47,190,.15);border-radius:12px;
+  padding:18px 20px;margin-bottom:24px;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:10px;
+}
+.total-label{font-size:.77rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;}
+.total-amount{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--ink);line-height:1;}
+.booking-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-book{
+  flex:1;min-width:180px;padding:15px;background:var(--purple);color:#fff;border:none;
+  border-radius:9px;font-size:.86rem;font-weight:700;cursor:pointer;
+  transition:all .2s;letter-spacing:.05em;
+}
+.btn-book:hover{background:var(--purple2);transform:translateY(-2px);}
+.btn-mpesa{
+  flex:1;min-width:180px;padding:15px;background:#4CAF50;color:#fff;border:none;
+  border-radius:9px;font-size:.86rem;font-weight:700;cursor:pointer;
+  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-mpesa:hover{background:#43a047;transform:translateY(-2px);}
+.msg-box{
+  margin-top:16px;padding:15px 18px;border-radius:9px;font-size:.85rem;
+  font-weight:500;display:none;line-height:1.55;
+}
+.msg-box.success{background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;display:block;}
+.msg-box.error{background:#ffebee;color:#c62828;border:1px solid #ffcdd2;display:block;}
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.cta-band{
+  background:linear-gradient(135deg,var(--purple),var(--green));
+  padding:82px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 20% 30%,rgba(255,255,255,.09),transparent 60%),
+             radial-gradient(ellipse 50% 70% at 85% 70%,rgba(134,239,172,.1),transparent 60%);
+}
+.cta-band .container{position:relative;z-index:2;}
+.cta-band h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.9rem,3.8vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;
+}
+.cta-band p{
+  color:rgba(255,255,255,.82);font-size:.98rem;margin-bottom:32px;
+  max-width:560px;margin-left:auto;margin-right:auto;line-height:1.75;
+}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.contact-list li{
+  display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;
+  padding-bottom:22px;border-bottom:1px solid rgba(123,47,190,.12);
+}
+.contact-list li:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.contact-icon{
+  width:44px;height:44px;flex-shrink:0;border-radius:12px;
+  background:rgba(123,47,190,.1);display:flex;align-items:center;
+  justify-content:center;font-size:1.15rem;
+}
+.contact-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--purple);margin-bottom:4px;
+}
+.contact-value{font-size:.94rem;color:var(--ink);line-height:1.6;}
+.contact-value a{transition:color .2s;}
+.contact-value a:hover{color:var(--purple);}
+.map-wrap{
+  border-radius:18px;overflow:hidden;box-shadow:var(--shadow);
+  min-height:380px;background:#e9e4f5;position:relative;
+}
+.map-wrap iframe{width:100%;height:100%;min-height:380px;border:0;display:block;}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:linear-gradient(135deg,#07021a,#030807);color:rgba(255,255,255,.52);padding:66px 40px 28px;}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:40px;
+  max-width:var(--max);margin:0 auto 44px;
+}
+.footer-logo-img{height:64px;width:auto;margin-bottom:16px;filter:drop-shadow(0 0 10px rgba(168,85,247,.3));}
+.footer-brand-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.3rem;
+  color:var(--purple2);font-weight:700;margin-bottom:5px;
+}
+.footer-brand-sub{
+  font-size:.63rem;letter-spacing:.22em;color:rgba(255,255,255,.3);
+  text-transform:uppercase;margin-bottom:14px;
+}
+.footer-brand p{font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.44);}
+.footer-col h4{
+  font-size:.67rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--purple3);margin-bottom:18px;
+}
+.footer-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:10px;transition:color .2s;}
+.footer-col a:hover{color:var(--purple2);}
+.footer-col p{font-size:.82rem;margin-bottom:10px;line-height:1.6;}
+.footer-bottom{
+  max-width:var(--max);margin:0 auto;border-top:1px solid rgba(123,47,190,.15);
+  padding-top:22px;display:flex;justify-content:space-between;font-size:.73rem;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-bottom a:hover{color:var(--purple2);}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.84);z-index:500;
+  justify-content:center;align-items:center;padding:20px;backdrop-filter:blur(8px);
+}
+.modal.open{display:flex;}
+.modal-content{
+  background:#fff;border-radius:18px;width:100%;max-width:580px;
+  overflow:hidden;animation:modalIn .3s ease;max-height:92vh;overflow-y:auto;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.94) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-img-wrap{
+  position:relative;height:200px;background:linear-gradient(135deg,#28094a,#0f2c10);
+  display:flex;align-items:center;justify-content:center;font-size:4rem;
+}
+.modal-close{
+  position:absolute;top:14px;right:14px;width:36px;height:36px;
+  background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;
+  font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.modal-body{padding:28px 30px 32px;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.modal-price{font-size:1.15rem;color:var(--purple);font-weight:700;margin-bottom:16px;}
+.modal-specs-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.spec-chip{padding:6px 15px;background:#f5f0ff;border-radius:50px;font-size:.78rem;color:var(--ink);}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast{
+  position:fixed;bottom:28px;right:28px;background:var(--purple);color:#fff;
+  padding:16px 24px;border-radius:12px;font-size:.86rem;font-weight:500;
+  box-shadow:0 8px 32px rgba(123,47,190,.4);transform:translateY(110px);
+  opacity:0;transition:all .4s ease;z-index:999;border-left:4px solid var(--purple3);
+  max-width:340px;line-height:1.5;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1100px){
+  .tours-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1.6fr 1fr 1fr;}
+}
+@media(max-width:1023px){
+  .g3{grid-template-columns:1fr;max-width:560px;margin:0 auto;}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .about-grid{grid-template-columns:1fr;gap:36px;}
+  .about-visual{min-height:320px;}
+  .contact-grid{grid-template-columns:1fr;gap:36px;}
+  .hero-logo-img{width:155px;}
+}
+@media(max-width:860px){
+  .dest-grid{grid-template-columns:repeat(2,1fr);}
+  .dest-card:nth-child(1),.dest-card:nth-child(2){grid-column:span 2;min-height:250px;}
+  .reviews-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto;}
+  .steps-grid{grid-template-columns:1fr;gap:6px;}
+  .step:not(:last-child)::after{content:'↓';top:auto;bottom:-6px;right:auto;left:50%;transform:translateX(-50%);}
+}
+@media(max-width:767px){
+  header{padding:9px 16px;}
+  nav a.navlink{display:none;}
+  .nav-book{display:none;}
+  .hamburger{display:flex;}
+  .brand-text h2{font-size:.98rem;}
+  .brand-text span{font-size:.5rem;letter-spacing:.16em;}
+  .brand-logo{height:46px;}
+  .hero{min-height:auto;padding:120px 18px 100px;}
+  .hero-logo-img{width:118px;}
+  .hero h1{font-size:clamp(1.95rem,8.6vw,2.6rem);}
+  .hero p.lede{font-size:.88rem;padding:0 6px;}
+  .hero-tags{gap:8px 16px;}
+  .hero-tags span{font-size:.68rem;}
+  .hero-tags span:not(:last-child)::after{right:-11px;}
+  .hero-btns{flex-direction:column;align-items:center;gap:11px;}
+  .btn-primary,.btn-ghost{width:250px;padding:14px 22px;font-size:.8rem;justify-content:center;}
+  .slide-arrow{width:40px;height:40px;font-size:15px;}
+  .slide-arrow.prev{left:8px;}
+  .slide-arrow.next{right:8px;}
+  .hero-slide-caption{bottom:78px;}
+  .stats-strip{display:grid;grid-template-columns:1fr 1fr;}
+  .stat{padding:20px 10px;border-right:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
+  .stat-num{font-size:1.75rem;}
+  .section{padding:58px 16px;}
+  #ai-assistant{padding:58px 16px;}
+  .forms-section{padding:58px 16px;}
+  .cta-band{padding:56px 20px;}
+  .tours-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto;}
+  .dest-grid{grid-template-columns:1fr;}
+  .dest-card:nth-child(1),.dest-card:nth-child(2){grid-column:span 1;}
+  .why-grid{grid-template-columns:1fr;}
+  .cards{grid-template-columns:1fr;max-width:420px;margin:0 auto;}
+  .form-row{grid-template-columns:1fr;gap:0;}
+  .form-tabs{grid-template-columns:repeat(2,1fr);max-width:340px;}
+  .booking-card{padding:24px 18px;}
+  .booking-btns{flex-direction:column;gap:11px;}
+  .btn-book,.btn-mpesa{min-width:0;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;align-items:center;text-align:center;}
+  .chat-messages{height:280px;}
+  .chat-suggestions{padding:12px 16px 4px;}
+  .contact-grid{gap:30px;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  .btn-white,.btn-white-outline,.btn-whatsapp{width:250px;justify-content:center;}
+}
+@media(max-width:400px){
+  .hero h1{font-size:1.75rem;}
+  .hero-logo-img{width:100px;}
+  .step-num{font-size:2.8rem;}
+  .modal-body{padding:22px 18px 26px;}
+}
+
+/* ============================================================
+   PERFORMANCE + RESPONSIVE LAYER
+   ============================================================ */
+img{height:auto;}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.hero-logo-img{animation:none!important;filter:drop-shadow(0 0 28px rgba(168,85,247,.6)) drop-shadow(0 4px 18px rgba(0,0,0,.6));}
+.cta-band,#contact,#footer{content-visibility:auto;contain-intrinsic-size:auto 600px;}
+@media(min-width:768px){.hero{min-height:100vh;min-height:100svh;}}
+@media(max-width:1100px){
+  header{padding:9px 20px;}
+  nav a.navlink,.nav-book{display:none;}
+  .hamburger{display:flex;padding:10px;}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .section,.forms-section,#ai-assistant{padding-left:28px;padding-right:28px;padding-top:76px;padding-bottom:76px;}
+  .cta-band{padding:68px 28px;}
+  footer{padding:56px 28px 26px;}
+}
+@media(max-width:767px){
+  .hero{padding:108px 18px 150px;}
+  .hero-est,.hero-scroll{display:none;}
+  .form-group input,.form-group select,.form-group textarea,.chat-input{font-size:16px;}
+  .toast{left:16px;right:16px;bottom:18px;max-width:none;}
+  .section-header{margin-bottom:36px;}
+  .filter-bar{gap:8px;margin-bottom:28px;}
+  .filter-btn{padding:9px 16px;}
+  .card-footer{flex-direction:column;align-items:stretch;}
+  .card-actions{width:100%;}
+  .card-actions button{flex:1;}
+  .modal{padding:12px;}
+  .modal-img-wrap{height:140px;}
+  footer{padding:52px 18px calc(24px + env(safe-area-inset-bottom));}
+}
+@media(max-height:520px) and (orientation:landscape){
+  .hero{min-height:auto;padding:92px 20px 130px;}
+  .hero-logo-wrap,.hero-scroll,.hero-est{display:none;}
+}
+@media(hover:none){
+  .card:hover,.tour-card:hover,.pillar:hover,.dest-card:hover,.why-card:hover,.review-card:hover{transform:none;}
+  .pillar:hover .pillar-img,.dest-card:hover .dest-img,.card:hover .card-img{transform:none;}
+}
+@media(pointer:coarse){
+  .btn-card,.btn-card-outline,.book-tour-btn,.filter-btn,.suggestion-chip,.form-tab{min-height:44px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+  .reveal{opacity:1;transform:none;}
+}
+/* hero overlap fix: on phones / short screens the slide caption, dots and arrows sit in the flow, not on top of the content */
+@media(max-width:767px),(max-height:600px){
+  .hero{padding-bottom:88px;}
+  .hero-slide-caption{position:static;transform:none;margin-top:30px;min-height:4.6rem;width:100%;max-width:440px;z-index:2;}
+  #slideLabel{font-size:1.02rem;}
+  #slideSub{font-size:.74rem;line-height:1.45;}
+  .slide-dots{bottom:36px;}
+  .slide-arrow,.slide-arrow:hover{top:auto;bottom:16px;transform:none;width:40px;height:40px;}
+  .slide-arrow.prev{left:14px;}
+  .slide-arrow.next{right:14px;}
+  .hero-est,.hero-scroll{display:none;}
+}
+@media(max-width:767px){
+  .hero-tags{padding:0 4px;}
+  .hero-btns{margin-bottom:0;}
+}
+/* car availability notice */
+.avail-box{margin:0 0 20px;padding:14px 16px;border-radius:10px;font-size:.85rem;line-height:1.55;border:1px solid transparent;}
+.avail-box[hidden]{display:none;}
+.avail-box strong{display:block;font-size:.92rem;margin-bottom:2px;}
+.avail-box.checking{background:#f6f3fb;color:var(--muted);border-color:#e8e0f0;}
+.avail-box.ok{background:#e8f5e9;color:#2e7d32;border-color:#c8e6c9;}
+.avail-box.busy{background:#fff1f1;color:#b71c1c;border-color:#ffcdd2;}
+.avail-box.info{background:#fff8e1;color:#8a6d00;border-color:#ffecb3;}
+.avail-alts{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--ink);font-size:.78rem;}
+.avail-alts button{padding:7px 14px;border:1.5px solid var(--purple);background:#fff;color:var(--purple);border-radius:50px;font-size:.76rem;font-weight:700;cursor:pointer;}
+.avail-alts button:hover{background:rgba(123,47,190,.08);}
+
+/* ===== Mobile hardening ===== */
+html,body{max-width:100%;overflow-x:clip;}
+@media(max-width:767px){
+  .hero-tags span::after,.hero-tags span:not(:last-child)::after{display:none;}
+  .hero-tags{gap:6px 14px;}
+  .hero-btns .btn-primary,.hero-btns .btn-ghost{width:100%;max-width:280px;}
+  .modal-content{max-height:92vh;max-height:92dvh;overflow-y:auto;}
+  .chat-messages{height:min(300px,46dvh);}
+  .stat-label{font-size:.66rem;}
+}
+@media(max-width:480px){
+  .brand-text span{display:none;}
+  .brand-text h2{font-size:1rem;}
+  .section-header .sec-title{font-size:clamp(1.7rem,8vw,2.2rem);}
+}
+@media(max-width:340px){
+  .form-tabs{grid-template-columns:1fr 1fr;}
+  .btn-card,.btn-card-outline{padding-left:12px;padding-right:12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header>
+  <a class="brand" href="#top">
+    <img class="brand-logo" src="images/logo.webp" width="420" height="420" alt="PEM Tours &amp; Travellers logo">
+    <div class="brand-text">
+      <h2>PEM TOURS &amp; TRAVELLERS<span>Nakuru, Kenya &nbsp;·&nbsp; Your Classy Travelling Partner</span></h2>
+    </div>
+  </a>
+
+  <nav>
+    <a class="navlink" href="#top">Home</a>
+    <a class="navlink" href="#fleet">Car Hire</a>
+    <a class="navlink" href="#safaris">Safaris</a>
+    <a class="navlink" href="#services">Travel Services</a>
+    <a class="navlink" href="#about">About Us</a>
+    <a class="navlink" href="#contact">Contact</a>
+    <a class="navlink" href="receipt.html">Get Receipt</a>
+    <a href="#book" class="nav-book">Book Now</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mob-close" onclick="toggleMenu()" aria-label="Close menu">✕</button>
+  <a href="#top" onclick="toggleMenu()">Home</a>
+  <a href="#fleet" onclick="toggleMenu()">Car Hire</a>
+  <a href="#safaris" onclick="toggleMenu()">Safaris</a>
+  <a href="#services" onclick="toggleMenu()">Travel Services</a>
+  <a href="#about" onclick="toggleMenu()">About Us</a>
+  <a href="#book" onclick="toggleMenu()">Book Now</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="receipt.html" onclick="toggleMenu()">Get Receipt</a>
+</div>
+
+<!-- ============================================================
+     1. HERO
+     ============================================================ -->
+<div class="hero" id="top">
+  <!-- Swap these background URLs for your own high-quality photos -->
+  <img class="hero-bg cover-img active" id="bg1" src="images/hero-1-704.webp" width="704" height="1024" alt="" decoding="async" fetchpriority="high">
+  <img class="hero-bg cover-img inactive" id="bg2" src="images/hero-2-736.webp" width="736" height="1109" alt="" decoding="async" loading="lazy" fetchpriority="low">
+  <div class="hero-overlay"></div>
+
+  <button class="slide-arrow prev" onclick="prevSlide()" aria-label="Previous slide">←</button>
+  <button class="slide-arrow next" onclick="nextSlide()" aria-label="Next slide">→</button>
+
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo-img" src="images/logo.webp" width="420" height="420" alt="PEM Tours &amp; Travellers">
+    </div>
+
+    <div class="hero-eyebrow">Kenya &nbsp;·&nbsp; Est. 2013 &nbsp;·&nbsp; Nakuru</div>
+
+    <h1>Discover Kenya<br><em>Your Way</em></h1>
+
+    <div class="hero-tags">
+      <span>Safaris</span>
+      <span>Car Hire</span>
+      <span>Airport Transfers</span>
+      <span>Accommodation</span>
+    </div>
+
+    <p class="lede">
+      From Nakuru to Maasai Mara, Amboseli and beyond, PEM TOURS makes
+      travelling across Kenya simple, comfortable and memorable.
+    </p>
+
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="goToForm('safari')">Book a Safari</button>
+      <button class="btn-ghost" onclick="goToForm('carhire')">Hire a Car</button>
+    </div>
+
+    <div class="hero-est">Est. 2013 &nbsp;·&nbsp; Nakuru, Kenya</div>
+  </div>
+
+  <div class="hero-slide-caption">
+    <div id="slideLabel"></div>
+    <div id="slideSub"></div>
+  </div>
+  <div class="slide-dots" id="slideDots"></div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Explore</div>
+</div>
+
+<!-- ============================================================
+     2. STATS
+     ============================================================ -->
+<div class="stats-strip">
+  <div class="stat"><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">Happy Travellers</div></div>
+  <div class="stat"><div class="stat-num" data-count="20" data-suffix="+">0</div><div class="stat-label">Vehicles</div></div>
+  <div class="stat"><div class="stat-num" data-count="12" data-suffix="+">0</div><div class="stat-label">Destinations</div></div>
+  <div class="stat"><div class="stat-num" data-count="2013" data-prefix="Since ">0</div><div class="stat-label">Serving Travellers</div></div>
+</div>
+
+<!-- ============================================================
+     3. WHAT WE DO
+     ============================================================ -->
+<section class="section section-dark" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label sec-label-light">What We Do</div>
+      <div class="sec-title sec-title-light">Travel Made Simple</div>
+      <p class="sec-sub sec-sub-light">
+        Three core services, one dependable team. Everything you need to move
+        around Kenya — arranged before you land.
+      </p>
+    </div>
+
+    <div class="g3">
+      <article class="pillar reveal">
+        <img class="pillar-img cover-img" src="images/car-tour-van-for-safari-and-group-travel-in-kenya.webp" width="640" height="428" alt="" loading="lazy" decoding="async">
+        <h3 class="pillar-title">Car Hire</h3>
+        <p class="pillar-text">
+          Self-drive and chauffeur-driven vehicles for city, business and
+          upcountry travel — saloons, SUVs, 4x4s and minibuses.
+        </p>
+        <a class="pillar-link" href="#fleet">View Vehicles →</a>
+      </article>
+
+      <article class="pillar reveal">
+        <img class="pillar-img cover-img" src="images/service-1.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <h3 class="pillar-title">Safaris</h3>
+        <p class="pillar-text">
+          Explore Maasai Mara, Amboseli, Samburu, Lake Nakuru and more with
+          curated, all-inclusive safari packages.
+        </p>
+        <a class="pillar-link" href="#safaris">Explore Safaris →</a>
+      </article>
+
+      <article class="pillar reveal">
+        <img class="pillar-img cover-img" src="images/service-2.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <h3 class="pillar-title">Travel Services</h3>
+        <p class="pillar-text">
+          Airport transfers, hotel bookings, Airbnb stays and air ticketing —
+          handled by people who know the ground.
+        </p>
+        <a class="pillar-link" href="#book" onclick="goToForm('airtransfer')">View Services →</a>
+      </article>
+    </div>
+
+    <div class="mini-services reveal">
+      <button class="mini-chip" onclick="goToForm('carhire')">Car Hire</button>
+      <button class="mini-chip" onclick="goToForm('safari')">Safari Packages</button>
+      <button class="mini-chip" onclick="goToForm('airtransfer')">Airport Transfers</button>
+      <button class="mini-chip" onclick="goToForm('hotel')">Hotel Booking</button>
+      <button class="mini-chip" onclick="goToForm('airbnb')">Airbnb Stays</button>
+      <button class="mini-chip" onclick="goToForm('airticket')">Air Ticketing</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. FEATURED SAFARIS
+     ============================================================ -->
+<section class="section section-dark" id="safaris" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label sec-label-light">Popular Packages</div>
+      <div class="sec-title sec-title-light">Explore Kenya</div>
+      <p class="sec-sub sec-sub-light">
+        Hand-picked safari experiences for every kind of traveller.
+        Every package includes a guide, vehicle and park fees.
+      </p>
+    </div>
+
+    <div class="tours-grid">
+      <!-- Maasai Mara -->
+      <article class="tour-card reveal">
+        <div class="tour-banner"><img class="cover-img" src="images/destination-1.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+          <div class="tour-banner-overlay"></div>
+          <span class="tour-nights-badge">3 Days</span>
+        </div>
+        <div class="tour-body">
+          <h3 class="tour-name">Maasai Mara Classic</h3>
+          <div class="tour-dest">Narok County</div>
+          <ul class="tour-includes">
+            <li>Big Five game drives</li>
+            <li>Full-board accommodation</li>
+            <li>4x4 safari vehicle + guide</li>
+            <li>Park entrance fees</li>
+          </ul>
+          <div class="tour-price-row">
+            <div class="tour-price">Price on request<span class="tour-per">per person sharing</span></div>
+            <button class="book-tour-btn" onclick="bookTour('Maasai Mara Classic — 3 Days')">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Amboseli -->
+      <article class="tour-card reveal">
+        <div class="tour-banner"><img class="cover-img" src="images/destination-2.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+          <div class="tour-banner-overlay"></div>
+          <span class="tour-nights-badge">2 Days</span>
+        </div>
+        <div class="tour-body">
+          <h3 class="tour-name">Amboseli Elephant Safari</h3>
+          <div class="tour-dest">Kajiado County</div>
+          <ul class="tour-includes">
+            <li>Elephants &amp; Kilimanjaro views</li>
+            <li>Full-board accommodation</li>
+            <li>Game drives morning &amp; evening</li>
+            <li>Park entrance fees</li>
+          </ul>
+          <div class="tour-price-row">
+            <div class="tour-price">Price on request<span class="tour-per">per person sharing</span></div>
+            <button class="book-tour-btn" onclick="bookTour('Amboseli Elephant Safari — 2 Days')">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lake Nakuru -->
+      <article class="tour-card reveal">
+        <div class="tour-banner"><img class="cover-img" src="images/destination-3.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+          <div class="tour-banner-overlay"></div>
+          <span class="tour-nights-badge">1 Day</span>
+        </div>
+        <div class="tour-body">
+          <h3 class="tour-name">Lake Nakuru Flamingos</h3>
+          <div class="tour-dest">Nakuru County</div>
+          <ul class="tour-includes">
+            <li>Flamingos, rhino &amp; giraffe</li>
+            <li>Lunch included</li>
+            <li>Game drive with guide</li>
+            <li>Park entrance fees</li>
+          </ul>
+          <div class="tour-price-row">
+            <div class="tour-price">Price on request<span class="tour-per">per person sharing</span></div>
+            <button class="book-tour-btn" onclick="bookTour('Lake Nakuru Flamingos — 1 Day')">Book</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Samburu -->
+      <article class="tour-card reveal">
+        <div class="tour-banner"><img class="cover-img" src="images/destination-4.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+          <div class="tour-banner-overlay"></div>
+          <span class="tour-nights-badge">4 Days</span>
+        </div>
+        <div class="tour-body">
+          <h3 class="tour-name">Samburu Cultural Safari</h3>
+          <div class="tour-dest">Samburu County</div>
+          <ul class="tour-includes">
+            <li>Unique northern wildlife</li>
+            <li>Samburu cultural visit</li>
+            <li>Full-board accommodation</li>
+            <li>Park entrance fees</li>
+          </ul>
+          <div class="tour-price-row">
+            <div class="tour-price">Price on request<span class="tour-per">per person sharing</span></div>
+            <button class="book-tour-btn" onclick="bookTour('Samburu Cultural Safari — 4 Days')">Book</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-cta reveal">
+      <button class="btn-primary" onclick="goToForm('safari')">Request a Safari Quote →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. POPULAR DESTINATIONS
+     ============================================================ -->
+<section class="section section-cream" id="destinations">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label">Destinations</div>
+      <div class="sec-title">Where Will You Go Next?</div>
+      <p class="sec-sub">
+        Kenya's most-loved parks, lakes and cities — all within reach of our Nakuru base.
+      </p>
+    </div>
+
+    <div class="dest-grid">
+      <div class="dest-card reveal" onclick="bookTour('Maasai Mara')">
+        <img class="dest-img cover-img" src="images/destination-1.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <div class="dest-info">
+          <div class="dest-name">Maasai Mara</div>
+          <div class="dest-sub">Wildlife &amp; the Big Five</div>
+          <span class="dest-tag">Explore →</span>
+        </div>
+      </div>
+
+      <div class="dest-card reveal" onclick="bookTour('Amboseli')">
+        <img class="dest-img cover-img" src="images/destination-2.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <div class="dest-info">
+          <div class="dest-name">Amboseli</div>
+          <div class="dest-sub">Elephants &amp; Kilimanjaro</div>
+          <span class="dest-tag">Explore →</span>
+        </div>
+      </div>
+
+      <div class="dest-card reveal" onclick="bookTour('Lake Nakuru')">
+        <img class="dest-img cover-img" src="images/destination-3.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <div class="dest-info">
+          <div class="dest-name">Lake Nakuru</div>
+          <div class="dest-sub">Flamingos &amp; Rhino</div>
+          <span class="dest-tag">Explore →</span>
+        </div>
+      </div>
+
+      <div class="dest-card reveal" onclick="bookTour('Samburu')">
+        <img class="dest-img cover-img" src="images/destination-4.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <div class="dest-info">
+          <div class="dest-name">Samburu</div>
+          <div class="dest-sub">Culture &amp; Wilderness</div>
+          <span class="dest-tag">Explore →</span>
+        </div>
+      </div>
+
+      <div class="dest-card reveal" onclick="bookTour('Nairobi')">
+        <img class="dest-img cover-img" src="images/service-1.webp" width="736" height="846" alt="" loading="lazy" decoding="async">
+        <div class="dest-info">
+          <div class="dest-name">Nairobi</div>
+          <div class="dest-sub">City &amp; National Park</div>
+          <span class="dest-tag">Explore →</span>
+        </div>
+      </div>
+
+      <div class="dest-card reveal" onclick="goToForm('hotel')">
+        <img class="dest-img cover-img" src="images/destination-5.webp" width="474" height="545" alt="" loading="lazy" decoding="async">
+        <div class="dest-info">
+          <div class="dest-name">Diani &amp; the Coast</div>
+          <div class="dest-sub">Beaches &amp; Ocean Resorts</div>
+          <span class="dest-tag">Explore →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. CAR HIRE / FLEET
+     ============================================================ -->
+<section class="section section-cream" id="fleet" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label">Our Fleet</div>
+      <div class="sec-title">Find the Right Car for Your Journey</div>
+      <p class="sec-sub">
+        Every vehicle is regularly serviced, fully insured and available
+        self-drive or with a professional chauffeur.
+      </p>
+    </div>
+
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterCards('all',this)">All Vehicles</button>
+      <button class="filter-btn" onclick="filterCards('sedan',this)">Sedans &amp; Wagons</button>
+      <button class="filter-btn" onclick="filterCards('van',this)">Vans &amp; MPVs</button>
+    </div>
+
+    <div class="cards" id="cardsContainer">
+
+      <!-- Subaru Trizia -->
+      <div class="card" data-cat="sedan" style="border-top:4px solid #5a1fa0;">
+        <div class="card-badge popular">Popular</div>
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-subaru-trizia.webp" width="640" height="431" alt="Subaru Trizia for hire in Nakuru" loading="lazy" decoding="async">
+          <div class="card-img-label">Subaru Trizia</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>5 Seats</span><span>Automatic</span><span>Petrol</span><span>City</span></div>
+          <p class="card-desc">Comfortable and fuel-efficient — perfect for city runs and upcountry trips.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 4,500 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('trizia')">Details</button>
+              <button class="btn-card" onclick="hireNow('trizia')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toyota Axio -->
+      <div class="card" data-cat="sedan" style="border-top:4px solid #1a3d22;">
+        <div class="card-badge" style="background:#1a3d22;">Executive</div>
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-toyota-axio.webp" width="640" height="640" alt="Toyota Axio for hire in Nakuru" loading="lazy" decoding="async">
+          <div class="card-img-label">Toyota Axio</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>5 Seats</span><span>Automatic</span><span>Petrol</span><span>Executive</span></div>
+          <p class="card-desc">Smooth, reliable and comfortable — ideal for business travel and long distance trips.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 5,000 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('axio')">Details</button>
+              <button class="btn-card" onclick="hireNow('axio')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toyota Ractis -->
+      <div class="card" data-cat="sedan" style="border-top:4px solid #2d3a8c;">
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-toyota-ractis.webp" width="640" height="480" alt="Toyota Ractis for hire in Nakuru" loading="lazy" decoding="async">
+          <div class="card-img-label">Toyota Ractis</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>5 Seats</span><span>Automatic</span><span>Petrol</span><span>Spacious</span></div>
+          <p class="card-desc">Compact and versatile — great for families and city travel with extra cargo space.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 4,000 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('ractis')">Details</button>
+              <button class="btn-card" onclick="hireNow('ractis')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toyota Vitz -->
+      <div class="card" data-cat="sedan" style="border-top:4px solid #0d5c3a;">
+        <div class="card-badge" style="background:#0d5c3a;">Budget Pick</div>
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-toyota-vitz.webp" width="640" height="479" alt="Toyota Vitz for hire in Nakuru" loading="lazy" decoding="async">
+          <div class="card-img-label">Toyota Vitz</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>5 Seats</span><span>Automatic</span><span>Petrol</span><span>Economical</span></div>
+          <p class="card-desc">Affordable and fuel-efficient — perfect for city runs and short upcountry trips.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 3,500 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('vitz')">Details</button>
+              <button class="btn-card" onclick="hireNow('vitz')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toyota Fielder -->
+      <div class="card" data-cat="sedan" style="border-top:4px solid #8b3000;">
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-toyota-fielder.webp" width="640" height="427" alt="Toyota Fielder for hire in Nakuru" loading="lazy" decoding="async">
+          <div class="card-img-label">Toyota Fielder</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>5 Seats</span><span>Automatic</span><span>Petrol</span><span>Wagon</span></div>
+          <p class="card-desc">Practical station wagon — ideal for city and upcountry travel with ample boot space.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 5,500 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('fielder')">Details</button>
+              <button class="btn-card" onclick="hireNow('fielder')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toyota Noah -->
+      <div class="card" data-cat="van" style="border-top:4px solid #7B2FBE;">
+        <div class="card-badge popular">7-Seater</div>
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-toyota-noah-7-seater-van.webp" width="640" height="443" alt="Toyota Noah 7-seater van for hire in Nakuru" loading="lazy" decoding="async">
+          <div class="card-img-label">Toyota Noah</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>7 Seats</span><span>Petrol</span><span>A/C</span><span>Family MPV</span></div>
+          <p class="card-desc">Spacious family van — ideal for group travel, airport transfers and upcountry trips.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 7,500 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('noah')">Details</button>
+              <button class="btn-card" onclick="hireNow('noah')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour Van -->
+      <div class="card" data-cat="van" style="border-top:4px solid #1a3d55;">
+        <div class="card-badge" style="background:#1a3d55;">Group</div>
+        <div class="card-img-wrap">
+          <img class="card-img" src="images/car-tour-van-for-safari-and-group-travel-in-kenya.webp" width="640" height="428" alt="Tour van for safari and group travel in Kenya" loading="lazy" decoding="async">
+          <div class="card-img-label">Tour Van</div>
+        </div>
+        <div class="card-body">
+          <div class="card-specs"><span>9 Seats</span><span>Petrol</span><span>A/C</span><span>Roof Hatch</span></div>
+          <p class="card-desc">Spacious and comfortable for large groups, game drives and airport transfers.</p>
+          <div class="card-footer">
+            <div class="card-price">KES 8,000 <small>/day</small></div>
+            <div class="card-actions">
+              <button class="btn-card-outline" onclick="viewDetails('van')">Details</button>
+              <button class="btn-card" onclick="hireNow('van')">Hire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta reveal">
+      <button class="btn-primary" onclick="goToForm('carhire')">Request a Car Hire Quote →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. WHY PEM TOURS
+     ============================================================ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label sec-label-light">Why Choose Us</div>
+      <div class="sec-title sec-title-light">Why Travel With PEM TOURS?</div>
+      <p class="sec-sub sec-sub-light">
+        A local team that answers the phone, knows the roads and stands behind every trip.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-title">Safe &amp; Reliable</div>
+        <p class="why-text">Insured vehicles, serviced regularly, with dependable travel arrangements from start to finish.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-title">Local Expertise</div>
+        <p class="why-text">We know Kenya — the parks, the routes, the lodges and the hidden gems worth stopping for.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-title">Clear Pricing</div>
+        <p class="why-text">Know what you're paying before you travel. No hidden charges, no surprises on arrival.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-title">Easy Booking</div>
+        <p class="why-text">Book online, by phone or through WhatsApp. Quick answers, straightforward confirmation.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-title">Personal Service</div>
+        <p class="why-text">Assistance before, during and after your trip — from a team that treats you like a guest.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-title">Quick Response</div>
+        <p class="why-text">We're here when you need us, with fast replies on calls, WhatsApp and email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. HOW IT WORKS
+     ============================================================ -->
+<section class="section section-sand">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label">Simple Process</div>
+      <div class="sec-title">Book Your Trip in 3 Easy Steps</div>
+      <p class="sec-sub">No forms to print, no queues, no back-and-forth.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Choose</h3>
+        <p class="step-text">Choose your car, safari package or travel service from our fleet and destinations.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Book</h3>
+        <p class="step-text">Send us your travel details using the booking form, phone or WhatsApp — we confirm availability.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Travel</h3>
+        <p class="step-text">Make payment through our official channel and receive your confirmation and receipt.</p>
+      </div>
+    </div>
+
+    <div class="section-cta reveal">
+      <button class="btn-primary" onclick="goToForm('safari')">Start Your Booking →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. REVIEWS
+     ============================================================ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label sec-label-light">Traveller Feedback</div>
+      <div class="sec-title sec-title-light">What Our Travellers Say</div>
+      <p class="sec-sub sec-sub-light">
+        Real experiences from people who travelled with PEM TOURS.
+      </p>
+    </div>
+
+    <!-- ==========================================================
+         REPLACE THESE THREE REVIEWS WITH GENUINE CUSTOMER
+         FEEDBACK BEFORE PUBLISHING. Do not publish invented
+         testimonials. Keep the wording as close to the original
+         customer's message as possible.
+         ========================================================== -->
+    <div class="reviews-grid">
+      <article class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">INDEED PEM TOURS IS MY CLASSY TRAVELLING PARTNER,I WELCOME YOU ALL TO TRY OUT THIER SERVICES.</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">SHEM MAGETO</div>
+            <div class="review-meta">NAIROBI, KENYA</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">The service was excellent and the staff was very helpful.</p>
+        <div class="review-author">
+          <div class="review-avatar">B</div>
+          <div>
+            <div class="review-name">MALCOM MARTINS</div>
+            <div class="review-meta">ELDORET, Kenya</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">The air transfer was smooth and efficient.</p>
+        <div class="review-author">
+          <div class="review-avatar">C</div>
+          <div>
+            <div class="review-name">Justus Onduso<div>
+            <div class="review-meta">NAKURU, Kenya</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. AI TRAVEL GUIDE
+     ============================================================ -->
+<section id="ai-assistant">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label">Trip Planning</div>
+      <div class="sec-title">Not Sure Where to Go?</div>
+      <p class="sec-sub">
+        Tell us your budget, number of days and what you love doing —
+        we'll help you find a suitable Kenyan adventure.
+      </p>
+    </div>
+
+    <div class="chat-wrapper reveal">
+      <div class="chat-box">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <h3>PEM Travel Guide</h3>
+            <p><span class="online-dot"></span>Online — ask me anything</p>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot">
+            <div class="msg-bubble">
+              Hi! I'm the PEM Travel Guide. I can help you choose a safari,
+              pick a vehicle, or plan around your budget. What would you like to do?
+            </div>
+          </div>
+        </div>
+
+        <div class="typing-indicator" id="typing">
+          <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+        </div>
+
+        <div class="chat-suggestions">
+          <button class="suggestion-chip" onclick="quickAsk('Find me a safari')">Find me a safari</button>
+          <button class="suggestion-chip" onclick="quickAsk('Choose a car')">Choose a car</button>
+          <button class="suggestion-chip" onclick="quickAsk('Plan within my budget')">Plan within my budget</button>
+          <button class="suggestion-chip" onclick="quickAsk('Help me plan my trip')">Help me plan my trip</button>
+        </div>
+
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" type="text" placeholder="Type your question…" onkeydown="if(event.key==='Enter')sendMessage()">
+          <button class="chat-send" onclick="sendMessage()" aria-label="Send">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. ABOUT
+     ============================================================ -->
+<section class="section section-cream" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <img class="about-visual-img cover-img" src="images/about.webp" width="735" height="490" alt="" loading="lazy" decoding="async">
+        <div class="about-badge">
+          <div class="about-badge-num">2013</div>
+          <div class="about-badge-label">Serving Travellers Since</div>
+        </div>
+      </div>
+
+      <div class="about-copy reveal">
+        <div class="sec-label">About Us</div>
+        <h2>Your Classy Travelling Partner Since 2013</h2>
+        <p>
+          Based in Nakuru, Kenya, PEM TOURS &amp; Travellers provides car hire,
+          safari experiences and travel services designed to make travelling
+          across Kenya easier and more enjoyable.
+        </p>
+        <p>
+          Whether you're planning a weekend getaway, a business trip, a family
+          holiday or a wildlife adventure, our team is ready to help you plan
+          your journey — from the first enquiry to the moment you return home.
+        </p>
+
+        <ul class="about-points">
+          <li>Locally owned and operated in Nakuru, Kenya</li>
+          <li>Car hire, safaris and travel services under one roof</li>
+          <li>Personal support by phone, WhatsApp and email</li>
+          <li>Official receipts issued for every confirmed booking</li>
+        </ul>
+
+        <button class="btn-primary" onclick="goToForm('safari')">Plan Your Trip With Us →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12. BOOKING FORM
+     ============================================================ -->
+<section class="forms-section" id="book">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label sec-label-light">Book With Us</div>
+      <div class="sec-title sec-title-light">Request Your Booking</div>
+      <p class="sec-sub sec-sub-light">
+        Fill in the form below and our team will confirm availability and
+        send you payment instructions.
+      </p>
+    </div>
+
+    <div class="form-tabs reveal">
+      <button class="form-tab active" onclick="switchTab('safari',this)">Safari</button>
+      <button class="form-tab" onclick="switchTab('carhire',this)">Car Hire</button>
+      <button class="form-tab" onclick="switchTab('airtransfer',this)">Airport Transfer</button>
+      <button class="form-tab" onclick="switchTab('hotel',this)">Hotel</button>
+      <button class="form-tab" onclick="switchTab('airbnb',this)">Airbnb</button>
+      <button class="form-tab" onclick="switchTab('airticket',this)">Air Ticket</button>
+    </div>
+
+    <div class="booking-card reveal">
+
+      <!-- ---------- SAFARI ---------- -->
+      <div class="booking-form-panel active" id="panel-safari">
+        <div class="form-subhead">Safari Booking Request</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sf-name">Full Name</label>
+            <input id="sf-name" type="text" placeholder="e.g. Jane Wanjiru">
+          </div>
+          <div class="form-group">
+            <label for="sf-phone">Phone / WhatsApp</label>
+            <input id="sf-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sf-email">Email Address</label>
+            <input id="sf-email" type="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="sf-destination">Destination / Package</label>
+            <select id="sf-destination">
+              <option value="">Select a destination</option>
+              <option>Maasai Mara Classic — 3 Days</option>
+              <option>Amboseli Elephant Safari — 2 Days</option>
+              <option>Lake Nakuru Flamingos — 1 Day</option>
+              <option>Samburu Cultural Safari — 4 Days</option>
+              <option>Kenya Grand Circuit</option>
+              <option>Custom itinerary</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sf-date">Preferred Start Date</label>
+            <input id="sf-date" type="date">
+          </div>
+          <div class="form-group">
+            <label for="sf-travellers">Number of Travellers</label>
+            <input id="sf-travellers" type="number" min="1" value="2">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sf-notes">Special Requests</label>
+          <textarea id="sf-notes" rows="3" placeholder="Dietary needs, accommodation preference, pickup point…"></textarea>
+        </div>
+        <p class="field-hint">We'll reply with availability and a full quote. No payment is taken on this page.</p>
+      </div>
+
+      <!-- ---------- CAR HIRE ---------- -->
+      <div class="booking-form-panel" id="panel-carhire">
+        <div class="form-subhead">Car Hire Booking Request</div>
+        <p class="field-hint" style="margin-top:-8px;">These fields mirror our official Car Hire Agreement. You'll sign the physical copy (photo + driving licence/ID checked) when you collect the vehicle.</p>
+
+        <div class="car-selected-banner" id="carBanner" style="display:none;">
+          <span>Selected vehicle: <strong id="carBannerName"></strong></span>
+          <span class="price-tag" id="carBannerPrice"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-name">Full Name</label>
+            <input id="ch-name" type="text" placeholder="e.g. Brian Otieno">
+          </div>
+          <div class="form-group">
+            <label for="ch-idno">ID / Passport No.</label>
+            <input id="ch-idno" type="text" placeholder="e.g. 30123456">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-nationality">Nationality</label>
+            <input id="ch-nationality" type="text" placeholder="e.g. Kenyan">
+          </div>
+          <div class="form-group">
+            <label for="ch-phone">Phone / WhatsApp</label>
+            <input id="ch-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-occupation">Occupation</label>
+            <input id="ch-occupation" type="text" placeholder="e.g. Teacher">
+          </div>
+          <div class="form-group">
+            <label for="ch-dlno">Driving Licence No.</label>
+            <input id="ch-dlno" type="text" placeholder="e.g. DL123456">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-dlexpiry">DL Expiry Date</label>
+            <input id="ch-dlexpiry" type="date">
+          </div>
+          <div class="form-group">
+            <label for="ch-residence">Residence</label>
+            <input id="ch-residence" type="text" placeholder="e.g. Milimani, Nakuru">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-email">Email Address</label>
+            <input id="ch-email" type="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="ch-vehicle">Vehicle</label>
+            <select id="ch-vehicle" onchange="updateCarTotal()">
+              <option value="">Select a vehicle</option>
+              <option value="trizia" data-rate="4500">Subaru Trizia — KES 4,500/day</option>
+              <option value="axio" data-rate="5000">Toyota Axio — KES 5,000/day</option>
+              <option value="ractis" data-rate="4000">Toyota Ractis — KES 4,000/day</option>
+              <option value="vitz" data-rate="3500">Toyota Vitz — KES 3,500/day</option>
+              <option value="fielder" data-rate="5500">Toyota Fielder — KES 5,500/day</option>
+              <option value="noah" data-rate="7500">Toyota Noah — KES 7,500/day</option>
+              <option value="van" data-rate="8000">Tour Van — KES 8,000/day</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-subhead">Guarantor's Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-g-name">Guarantor Name</label>
+            <input id="ch-g-name" type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="ch-g-phone">Guarantor Tel</label>
+            <input id="ch-g-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-g-occupation">Guarantor Occupation</label>
+            <input id="ch-g-occupation" type="text" placeholder="e.g. Business owner">
+          </div>
+          <div class="form-group">
+            <label for="ch-g-idno">Guarantor ID No.</label>
+            <input id="ch-g-idno" type="text" placeholder="e.g. 29876543">
+          </div>
+        </div>
+
+        <div class="form-subhead">Next of Kin Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-nok-name">Next of Kin Name</label>
+            <input id="ch-nok-name" type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="ch-nok-phone">Next of Kin Tel</label>
+            <input id="ch-nok-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-nok-occupation">Next of Kin Occupation</label>
+            <input id="ch-nok-occupation" type="text" placeholder="e.g. Nurse">
+          </div>
+          <div class="form-group">
+            <label for="ch-nok-idno">Next of Kin ID No.</label>
+            <input id="ch-nok-idno" type="text" placeholder="e.g. 31122334">
+          </div>
+        </div>
+
+        <div class="form-subhead">Hire Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-pickup">Pick Up Date</label>
+            <input id="ch-pickup" type="date" onchange="updateCarTotal()">
+          </div>
+          <div class="form-group">
+            <label for="ch-pickup-time">Pick Up Time</label>
+            <input id="ch-pickup-time" type="time">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-days">Number of Days</label>
+            <input id="ch-days" type="number" min="1" value="1" onchange="updateCarTotal()" oninput="updateCarTotal()">
+          </div>
+          <div class="form-group">
+            <label for="ch-return">Return Date</label>
+            <input id="ch-return" type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-return-time">Return Time</label>
+            <input id="ch-return-time" type="time">
+          </div>
+          <div class="form-group">
+            <label for="ch-driver">Driver Option</label>
+            <select id="ch-driver">
+              <option>Self-drive</option>
+              <option>Chauffeur-driven</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ch-pickuploc">Pickup Location</label>
+            <input id="ch-pickuploc" type="text" placeholder="e.g. Nakuru CBD, JKIA…">
+          </div>
+          <div class="form-group">
+            <label for="ch-route">Travelling To (From Nakuru to…)</label>
+            <input id="ch-route" type="text" placeholder="e.g. Maasai Mara">
+          </div>
+        </div>
+
+        <div class="avail-box" id="carAvail" role="status" aria-live="polite" hidden></div>
+
+        <div class="total-box">
+          <div class="total-label">Estimated Total</div>
+          <div class="total-amount" id="carTotal">KES 0</div>
+        </div>
+        <p class="field-hint">Estimate only. Final cost may vary with fuel policy, mileage and chauffeur option.</p>
+
+        <details class="terms-box">
+          <summary>Car Hire Terms &amp; Conditions</summary>
+          <ol>
+            <li>Valid copy of driving licence and copy of National ID required.</li>
+            <li>Client is fully liable for all damages incurred while the vehicle is in transit.</li>
+            <li>It is the client's responsibility to check the oil and water level of the vehicle; the company is not liable for issues arising from this.</li>
+            <li>The vehicle is hired for a maximum of 600km per 24hrs — exceeding this incurs extra charges calculated per km.</li>
+            <li>A penalty of Kshs 500 per hour is charged when the client is late returning the vehicle.</li>
+            <li>A car wash fee of Kshs 200 applies if the hired vehicle was clean at the time of hire.</li>
+            <li>All repairs must be carried out by the company's mechanic at the client's expense; normal hire rates continue while the vehicle is in the garage or in police custody.</li>
+            <li>In case of an accident or damage en route, the client must contact the office first before taking any action.</li>
+            <li>If the vehicle is written off, the client must pay the insurance excess plus Ksh 100,000/= for towing and recovery.</li>
+            <li>Only the client named on the agreement may drive the vehicle — sub-hiring to another party without the office's knowledge terminates the contract.</li>
+            <li>The client must inform the office before changing route; failure to do so is treated as a police case.</li>
+            <li>The client will be photographed with the vehicle before taking it out.</li>
+            <li>The client must sign the agreement document on the return date.</li>
+            <li>Mechanical issues must be reported within the first 50km, or the vehicle is assumed to have been in good working order; issues reported later are the client's responsibility.</li>
+            <li>The vehicle may not be used to carry or escort any illegal drugs — the client remains liable until the vehicle is recovered or paid for if repossessed.</li>
+          </ol>
+          <p class="fee-note">If this contract is terminated by the client, a fee of 10% is deducted. A signed physical copy of this agreement, thumbprints and a photo with the vehicle are completed at handover.</p>
+        </details>
+
+        <label class="consent-row">
+          <input type="checkbox" id="ch-terms-consent">
+          <span>I confirm the information above is true and that I have read and understood the Car Hire Terms &amp; Conditions.</span>
+        </label>
+      </div>
+
+      <!-- ---------- AIRPORT TRANSFER ---------- -->
+      <div class="booking-form-panel" id="panel-airtransfer">
+        <div class="form-subhead">Airport Transfer Request</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="at-name">Full Name</label>
+            <input id="at-name" type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="at-phone">Phone / WhatsApp</label>
+            <input id="at-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="at-from">Pickup Point</label>
+            <input id="at-from" type="text" placeholder="e.g. JKIA Nairobi">
+          </div>
+          <div class="form-group">
+            <label for="at-to">Drop-off Point</label>
+            <input id="at-to" type="text" placeholder="e.g. Nakuru CBD">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="at-date">Date &amp; Time</label>
+            <input id="at-date" type="datetime-local">
+          </div>
+          <div class="form-group">
+            <label for="at-pax">Passengers</label>
+            <input id="at-pax" type="number" min="1" value="2">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="at-notes">Flight Number / Notes</label>
+          <textarea id="at-notes" rows="3" placeholder="Flight number, luggage, child seats needed…"></textarea>
+        </div>
+      </div>
+
+      <!-- ---------- HOTEL ---------- -->
+      <div class="booking-form-panel" id="panel-hotel">
+        <div class="form-subhead">Hotel Booking Request</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ht-name">Full Name</label>
+            <input id="ht-name" type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="ht-phone">Phone / WhatsApp</label>
+            <input id="ht-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ht-city">Town / Area</label>
+            <input id="ht-city" type="text" placeholder="e.g. Nakuru, Maasai Mara">
+          </div>
+          <div class="form-group">
+            <label for="ht-guests">Guests &amp; Rooms</label>
+            <input id="ht-guests" type="text" placeholder="e.g. 2 adults, 1 room">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ht-checkin">Check-in</label>
+            <input id="ht-checkin" type="date">
+          </div>
+          <div class="form-group">
+            <label for="ht-checkout">Check-out</label>
+            <input id="ht-checkout" type="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ht-notes">Budget &amp; Preferences</label>
+          <textarea id="ht-notes" rows="3" placeholder="Budget per night, lodge style, meal plan…"></textarea>
+        </div>
+      </div>
+
+      <!-- ---------- AIRBNB ---------- -->
+      <div class="booking-form-panel" id="panel-airbnb">
+        <div class="form-subhead">Airbnb / Apartment Request</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ab-name">Full Name</label>
+            <input id="ab-name" type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="ab-phone">Phone / WhatsApp</label>
+            <input id="ab-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ab-city">Town / Area</label>
+            <input id="ab-city" type="text" placeholder="e.g. Nakuru, Nairobi, Naivasha">
+          </div>
+          <div class="form-group">
+            <label for="ab-guests">Guests</label>
+            <input id="ab-guests" type="number" min="1" value="2">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ab-checkin">Check-in</label>
+            <input id="ab-checkin" type="date">
+          </div>
+          <div class="form-group">
+            <label for="ab-checkout">Check-out</label>
+            <input id="ab-checkout" type="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ab-notes">Preferences</label>
+          <textarea id="ab-notes" rows="3" placeholder="Number of bedrooms, Wi-Fi, parking, budget…"></textarea>
+        </div>
+      </div>
+
+      <!-- ---------- AIR TICKET ---------- -->
+      <div class="booking-form-panel" id="panel-airticket">
+        <div class="form-subhead">Flight Quote Request</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ft-name">Full Name</label>
+            <input id="ft-name" type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="ft-phone">Phone / WhatsApp</label>
+            <input id="ft-phone" type="tel" placeholder="e.g. 0712 345 678">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ft-from">From</label>
+            <input id="ft-from" type="text" placeholder="e.g. Nairobi (NBO)">
+          </div>
+          <div class="form-group">
+            <label for="ft-to">To</label>
+            <input id="ft-to" type="text" placeholder="e.g. Mombasa (MBA)">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ft-depart">Departure Date</label>
+            <input id="ft-depart" type="date">
+          </div>
+          <div class="form-group">
+            <label for="ft-return">Return Date (optional)</label>
+            <input id="ft-return" type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ft-pax">Passengers</label>
+            <input id="ft-pax" type="number" min="1" value="1">
+          </div>
+          <div class="form-group">
+            <label for="ft-class">Cabin Class</label>
+            <select id="ft-class">
+              <option>Economy</option>
+              <option>Premium Economy</option>
+              <option>Business</option>
+              <option>First</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- SHARED: TERMS + CONSENT + SUBMIT ---------- -->
+      <details class="terms-box">
+        <summary>Booking terms &amp; payment policy</summary>
+        <ol>
+          <li>A booking request is not a confirmed booking until PEM TOURS confirms availability in writing.</li>
+          <li>A deposit may be required to hold vehicles, accommodation and safari seats.</li>
+          <li>Cancellations made close to the travel date may attract a cancellation fee.</li>
+          <li>Vehicle hire is subject to a valid driving licence, security deposit and signed hire agreement.</li>
+          <li>Fuel, tolls and traffic fines are the responsibility of the hirer unless otherwise agreed in writing.</li>
+        </ol>
+        <p class="fee-note">Please confirm current deposit and cancellation terms with our office before paying.</p>
+      </details>
+
+      <label class="consent-row">
+        <input type="checkbox" id="consent">
+        <span>I confirm the details above are correct and I agree to be contacted by PEM TOURS &amp; Travellers regarding this request.</span>
+      </label>
+
+      <div class="booking-btns">
+        <button class="btn-book" onclick="submitBooking('enquiry')">Send Booking Request</button>
+        <button class="btn-mpesa" onclick="submitBooking('mpesa')">Pay via M-Pesa</button>
+      </div>
+
+      <div class="msg-box" id="bookingMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     13. FINAL CTA
+     ============================================================ -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Ready for Your Next Adventure?</h2>
+    <p>Let PEM TOURS help you plan it. Tell us where you want to go and we'll handle the rest.</p>
+    <div class="cta-btns">
+      <button class="btn-white" onclick="goToForm('safari')">Book a Safari</button>
+      <button class="btn-white-outline" onclick="goToForm('carhire')">Hire a Car</button>
+      <a class="btn-whatsapp" href="https://wa.me/254782817618?text=Hello%20PEM%20TOURS%2C%20I%27d%20like%20to%20enquire%20about%20a%20trip." target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     14. CONTACT
+     ============================================================ -->
+<section class="section section-cream" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="sec-label">Get In Touch</div>
+      <div class="sec-title">Talk to Our Team</div>
+      <p class="sec-sub">
+        Call, message or visit us in Nakuru. We're happy to help you plan.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <ul class="contact-list reveal">
+        <li>
+          <div>
+            <div class="contact-label">Call Us</div>
+            <div class="contact-value">
+              <a href="tel:+254782817618">+254 782 817 618</a><br>
+              <a href="tel:+254728817618">+254 728 817 618</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">
+              <a href="https://wa.me/254782817618" target="_blank" rel="noopener">Chat with us on WhatsApp →</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:info@pemtours.co.ke">info@pemtours.co.ke</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="contact-label">Office</div>
+            <div class="contact-value">
+              KFA, Jacaranda Business Complex, Room G32<br>Nakuru, Kenya
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="contact-label">Opening Hours</div>
+            <div class="contact-value">Monday – Saturday: 7:00am – 7:00pm</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="map-wrap reveal">
+        <!-- Replace the q= value with your exact Google Maps location if needed -->
+        <iframe
+          title="PEM Tours &amp; Travellers location in Nakuru"
+          src="https://www.google.com/maps?q=Jacaranda%20Business%20Complex%20Nakuru%20Kenya&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     15. FOOTER
+     ============================================================ -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img class="footer-logo-img" src="images/logo.webp" width="420" height="420" alt="PEM Tours &amp; Travellers" loading="lazy" decoding="async">
+      <div class="footer-brand-name">PEM TOURS &amp; TRAVELLERS</div>
+      <div class="footer-brand-sub">Nakuru, Kenya</div>
+      <p>Your classy travelling partner in Kenya — car hire, safari experiences and travel services since 2013.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#top">Home</a>
+      <a href="#fleet">Car Hire</a>
+      <a href="#safaris">Safaris</a>
+      <a href="#services">Travel Services</a>
+      <a href="#about">About Us</a>
+      <a href="#book">Book Now</a>
+      <a href="#contact">Contact</a>
+      <a href="receipt.html">Get Receipt</a>
+      <a href="admin_dashboard.html">Staff Login</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Popular Safaris</h4>
+      <a href="#safaris">Maasai Mara</a>
+      <a href="#safaris">Amboseli</a>
+      <a href="#safaris">Lake Nakuru</a>
+      <a href="#safaris">Samburu</a>
+      <a href="#safaris">Kenya Grand Circuit</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p><a href="tel:+254782817618">+254 782 817 618</a></p>
+      <p><a href="tel:+254728817618">+254 728 817 618</a></p>
+      <p><a href="mailto:info@pemtours.co.ke">info@pemtours.co.ke</a></p>
+      <p>KFA, Jacaranda Business Complex, Room G32, Nakuru</p>
+      <p>Mon–Sat: 7:00am – 7:00pm</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> PEM TOURS &amp; Travellers. All rights reserved.</div>
+    <div>Your Classy Travelling Partner &nbsp;·&nbsp; Nakuru, Kenya</div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     VEHICLE MODAL
+     ============================================================ -->
+<div class="modal" id="carModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content">
+    <div class="modal-img-wrap">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-specs-grid" id="modalSpecs"></div>
+      <button class="btn-book" style="width:100%;" onclick="proceedCarHire()">Hire This Vehicle →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FIREBASE (booking storage — shared with the admin dashboard) -->
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAZe8Vocr-WMjIDnKKNuP9qQOs1da6gi3Q",
+  authDomain: "pem-tours-and-travel.firebaseapp.com",
+  // TODO: confirm this against Firebase Console → Realtime Database (the URL shown at
+  // the top of the data viewer) once you've created the database for this project.
+  // It couldn't be verified from here — the SDK will only fail quietly (bookings
+  // won't save) if it's wrong, so please double-check it once.
+  databaseURL: "https://pem-tours-and-travel-default-rtdb.firebaseio.com",
+  projectId: "pem-tours-and-travel",
+  storageBucket: "pem-tours-and-travel.firebasestorage.app",
+  messagingSenderId: "846636546177",
+  appId: "1:846636546177:web:49a7aa091ec2f771503580",
+  measurementId: "G-4TN1QLN4RY"
+};
+// Firebase is loaded on demand (when the booking form nears the screen, or on first booking/availability check)
+// so it never slows the first paint.
+let pemDatabase = null, fbPromise = null;
+function loadScript(src){
+  return new Promise((res, rej) => {
+    const el = document.createElement('script');
+    el.src = src; el.onload = res; el.onerror = () => rej(new Error('Could not load ' + src));
+    document.head.appendChild(el);
+  });
+}
+function loadFirebase(){
+  if(!fbPromise){
+    fbPromise = loadScript('https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js')
+      .then(() => loadScript('https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js'))
+      .then(() => {
+        if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        pemDatabase = firebase.database();
+        return pemDatabase;
+      })
+      .catch(err => { console.error('Firebase init error:', err); fbPromise = null; return null; });
+  }
+  return fbPromise;
+}
+</script>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const CARS = {
+  trizia:  { name:'Subaru Trizia',  price:4500, seats:'5 Seats', trans:'Automatic', fuel:'Petrol', tag:'City Ideal',
+             desc:'Comfortable and fuel-efficient — perfect for city runs and upcountry trips.' },
+  axio:    { name:'Toyota Axio',    price:5000, seats:'5 Seats', trans:'Automatic', fuel:'Petrol', tag:'Executive',
+             desc:'Smooth, reliable and comfortable — ideal for business travel and long distance trips.' },
+  ractis:  { name:'Toyota Ractis',  price:4000, seats:'5 Seats', trans:'Automatic', fuel:'Petrol', tag:'Spacious',
+             desc:'Compact and versatile — great for families and city travel with extra cargo space.' },
+  vitz:    { name:'Toyota Vitz',    price:3500, seats:'5 Seats', trans:'Automatic', fuel:'Petrol', tag:'Economical',
+             desc:'Affordable and fuel-efficient — perfect for city runs and short upcountry trips.' },
+  fielder: { name:'Toyota Fielder', price:5500, seats:'5 Seats', trans:'Automatic', fuel:'Petrol', tag:'Wagon',
+             desc:'Practical station wagon — ideal for city and upcountry travel with ample boot space.' },
+  noah:    { name:'Toyota Noah',    price:7500, seats:'7 Seats', trans:'Automatic', fuel:'Petrol', tag:'Family MPV',
+             desc:'Spacious family van — ideal for group travel, airport transfers and upcountry trips.' },
+  van:     { name:'Tour Van',       price:8000, seats:'9 Seats', trans:'Manual',    fuel:'Petrol', tag:'Group Travel',
+             desc:'Spacious and comfortable for large groups, game drives and airport transfers.' }
+};
+
+/* ============================================================
+   HERO SLIDER
+   ============================================================ */
+const SLIDES = [
+  { label:'Maasai Mara National Reserve', sub:'Big Five game drives in Kenya\'s most famous park' },
+  { label:'Amboseli National Park',       sub:'Elephants beneath the shadow of Mount Kilimanjaro' },
+  { label:'Lake Nakuru National Park',    sub:'Flamingos, rhino and breathtaking Rift Valley views' },
+  { label:'Samburu National Reserve',     sub:'Unique northern wildlife and living culture' }
+];
+let currentSlide = 0;
+let slideTimer = null;
+
+function buildDots(){
+  const dots = document.getElementById('slideDots');
+  dots.innerHTML = '';
+  SLIDES.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    dots.appendChild(d);
+  });
+}
+
+function renderSlide(){
+  const label = document.getElementById('slideLabel');
+  const sub   = document.getElementById('slideSub');
+  label.style.opacity = 0;
+  sub.style.opacity = 0;
+  setTimeout(() => {
+    label.textContent = SLIDES[currentSlide].label;
+    sub.textContent   = SLIDES[currentSlide].sub;
+    label.style.opacity = 1;
+    sub.style.opacity = 1;
+  }, 320);
+
+  document.getElementById('bg1').classList.toggle('active', currentSlide % 2 === 0);
+  document.getElementById('bg1').classList.toggle('inactive', currentSlide % 2 !== 0);
+  document.getElementById('bg2').classList.toggle('active', currentSlide % 2 !== 0);
+  document.getElementById('bg2').classList.toggle('inactive', currentSlide % 2 === 0);
+
+  document.querySelectorAll('.slide-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === currentSlide);
+  });
+}
+
+function goToSlide(i){
+  currentSlide = (i + SLIDES.length) % SLIDES.length;
+  renderSlide();
+  restartSlider();
+}
+function nextSlide(){ goToSlide(currentSlide + 1); }
+function prevSlide(){ goToSlide(currentSlide - 1); }
+function restartSlider(){
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => {
+    currentSlide = (currentSlide + 1) % SLIDES.length;
+    renderSlide();
+  }, 6500);
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+  document.body.style.overflow =
+    document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+
+/* ============================================================
+   FLEET FILTER
+   ============================================================ */
+function filterCards(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#cardsContainer .card').forEach(card => {
+    const show = cat === 'all' || card.dataset.cat === cat;
+    card.style.display = show ? 'flex' : 'none';
+  });
+}
+
+/* ============================================================
+   VEHICLE MODAL
+   ============================================================ */
+let pendingCar = null;
+
+function viewDetails(key){
+  const car = CARS[key];
+  if(!car) return;
+  pendingCar = key;
+  document.getElementById('modalTitle').textContent = car.name;
+  document.getElementById('modalPrice').textContent = 'KES ' + car.price.toLocaleString() + ' per day';
+  document.getElementById('modalSpecs').innerHTML =
+    `<span class="spec-chip">${car.seats}</span>
+     <span class="spec-chip">${car.trans}</span>
+     <span class="spec-chip">${car.fuel}</span>
+     <span class="spec-chip">${car.tag}</span>
+     <span class="spec-chip">Self-drive or chauffeur</span>`;
+  document.getElementById('carModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('carModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function proceedCarHire(){
+  const key = pendingCar;
+  closeModal();
+  if(key) hireNow(key);
+}
+
+/* ============================================================
+   HIRE NOW — pre-fills the car hire form
+   ============================================================ */
+function hireNow(key){
+  const car = CARS[key];
+  if(!car) return;
+
+  goToForm('carhire');
+
+  const select = document.getElementById('ch-vehicle');
+  const match = Array.from(select.options).find(o => o.value === key);
+  if(match) select.value = key;
+
+  document.getElementById('carBanner').style.display = 'flex';
+  document.getElementById('carBannerName').textContent = car.name;
+  document.getElementById('carBannerPrice').textContent = 'KES ' + car.price.toLocaleString() + '/day';
+
+  updateCarTotal();
+  runAvailCheck().then(av => showToast(av && av.conflict ? carBusyText(av) : car.name + ' selected. Complete the form to request this vehicle.'));
+}
+
+function updateCarTotal(){
+  const select = document.getElementById('ch-vehicle');
+  const days   = parseInt(document.getElementById('ch-days').value || 1, 10);
+  const opt    = select.options[select.selectedIndex];
+  const rate   = opt && opt.dataset.rate ? parseInt(opt.dataset.rate, 10) : 0;
+  const total  = rate * (isNaN(days) ? 1 : days);
+  document.getElementById('carTotal').textContent = 'KES ' + total.toLocaleString();
+
+  const pickupEl = document.getElementById('ch-pickup');
+  const returnEl = document.getElementById('ch-return');
+  if(pickupEl && returnEl && pickupEl.value && !isNaN(days)){
+    const pickupDate = new Date(pickupEl.value + 'T00:00:00');
+    if(!isNaN(pickupDate)){
+      pickupDate.setDate(pickupDate.getDate() + days);
+      returnEl.value = toLocalISO(pickupDate);
+    }
+  }
+  scheduleAvailCheck();
+}
+
+/* ============================================================
+   CAR AVAILABILITY — warns clients when a car is already hired
+   ============================================================ */
+// Bookings with these statuses no longer hold a car.
+const RELEASED_STATUSES = ['cancelled','canceled','rejected','declined','completed','returned','closed','expired','no-show'];
+// Unconfirmed "Pending" requests don't block a car (otherwise anyone could lock a car by submitting a request).
+// Set to true if you want Pending requests to block too.
+const PENDING_BLOCKS = false;
+
+const gv = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+function toLocalISO(d){
+  const p = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+}
+function parseWhen(date, time, fallback){
+  if(!date) return null;
+  const d = new Date(date + 'T' + (time || fallback) + ':00');
+  return isNaN(d) ? null : d;
+}
+function bookingBlocks(b){
+  const st = String(b.status || '').trim().toLowerCase();
+  if(RELEASED_STATUSES.includes(st)) return false;
+  if(st === '' || st === 'pending') return PENDING_BLOCKS;
+  return true;
+}
+function fmtWhen(d, withTime){
+  let t = d.toLocaleDateString('en-KE', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+  if(withTime) t += ' at ' + d.toLocaleTimeString('en-KE', { hour:'numeric', minute:'2-digit' });
+  return t;
+}
+
+// Returns the list of active bookings for one car that overlap [from, to], or null if it can't be checked.
+async function findClashes(key, from, to){
+  const car = CARS[key];
+  const db = await loadFirebase();
+  if(!db || !car) return null;
+  const snap = await db.ref('availability').once('value');
+  const out = [];
+  snap.forEach(ch => {
+    const b = ch.val() || {};
+    if(b.vehicle !== car.name) return;
+    const st = parseWhen(b.start, b.pickupTime, '00:00');
+    const en = parseWhen(b.end, b.returnTime, '23:59');
+    if(!st || !en) return;
+    if(from < en && to > st) out.push({ ref: ch.key, start: st, end: en, hasTime: !!(b.returnTime) });
+  });
+  out.sort((a, b) => a.end - b.end);
+  return out;
+}
+
+async function checkCarAvailability(){
+  const key = gv('ch-vehicle');
+  if(!key || !CARS[key]) return null;
+  const pd = gv('ch-pickup'), rd = gv('ch-return');
+  let from, to;
+  if(pd){
+    from = parseWhen(pd, gv('ch-pickup-time'), '00:00');
+    to = parseWhen(rd || pd, gv('ch-return-time'), '23:59');
+    if(!from || !to || to <= from) return { key, invalid:true };
+  } else {
+    from = to = new Date();          // no dates yet: is the car out right now?
+  }
+  try{
+    const clashes = await findClashes(key, from, to);
+    if(clashes === null) return { key, unknown:true };
+    return { key, from, to, now:!pd, clashes, conflict: clashes.length > 0 };
+  } catch(err){
+    console.warn('Availability check failed:', err);
+    return { key, unknown:true };
+  }
+}
+
+function carBusyText(av){
+  const name = CARS[av.key].name;
+  const last = av.clashes[av.clashes.length - 1];
+  const back = fmtWhen(last.end, last.hasTime);
+  if(av.now) return name + ' is currently hired out and is expected back on ' + back + '.';
+  const first = av.clashes[0];
+  return name + ' is already booked (' + fmtWhen(first.start, false) + ' to ' + fmtWhen(first.end, first.hasTime) +
+         '). It returns on ' + back + ' and is available again after that.';
+}
+
+let availTimer = null, availSeq = 0;
+function scheduleAvailCheck(){
+  clearTimeout(availTimer);
+  availTimer = setTimeout(runAvailCheck, 350);
+}
+function setAvail(cls, html){
+  const box = document.getElementById('carAvail');
+  if(!box) return null;
+  if(!cls){ box.hidden = true; box.innerHTML = ''; return box; }
+  box.hidden = false; box.className = 'avail-box ' + cls; box.innerHTML = html;
+  return box;
+}
+async function runAvailCheck(){
+  clearTimeout(availTimer);
+  const seq = ++availSeq;
+  if(!gv('ch-vehicle')){ setAvail(''); return null; }
+  setAvail('checking', 'Checking availability…');
+  const av = await checkCarAvailability();
+  if(seq !== availSeq) return av;           // a newer check superseded this one
+  if(!av) setAvail('');
+  else if(av.invalid) setAvail('info', '<strong>Check your dates</strong>The return date/time must be after the pick-up date/time.');
+  else if(av.unknown) setAvail('info', 'We couldn\'t check live availability just now. You can still send your request and our team will confirm the vehicle.');
+  else if(av.conflict){
+    const box = setAvail('busy', '<strong>Sorry, this car is already booked</strong>');
+    const p = document.createElement('div'); p.textContent = carBusyText(av); box.appendChild(p);
+    offerAlternatives(av, box, seq);
+  } else {
+    setAvail('ok', '✓ ' + CARS[av.key].name + (av.now ? ' is available now.' : ' is available for your dates.'));
+  }
+  return av;
+}
+async function offerAlternatives(av, box, seq){
+  const keys = Object.keys(CARS).filter(k => k !== av.key);
+  const free = await Promise.all(keys.map(async k => {
+    try{ const c = await findClashes(k, av.from, av.to); return c && !c.length ? k : null; }
+    catch(e){ return null; }
+  }));
+  if(seq !== availSeq) return;
+  const list = free.filter(Boolean);
+  if(!list.length) return;
+  const row = document.createElement('div'); row.className = 'avail-alts';
+  row.appendChild(document.createTextNode('Free for these dates:'));
+  list.forEach(k => {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = CARS[k].name;
+    b.onclick = () => { document.getElementById('ch-vehicle').value = k; updateCarTotal(); };
+    row.appendChild(b);
+  });
+  box.appendChild(row);
+}
+
+/* ============================================================
+   BOOK A TOUR — pre-fills safari form
+   ============================================================ */
+function bookTour(name){
+  goToForm('safari');
+  const select = document.getElementById('sf-destination');
+  const match = Array.from(select.options).find(o => o.text.includes(name.split(' — ')[0]));
+  if(match) select.value = match.value;
+  showToast('Safari selected: ' + name);
+}
+
+/* ============================================================
+   FORM TABS
+   ============================================================ */
+function switchTab(key, btn){
+  document.querySelectorAll('.form-tab').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  else {
+    const tabs = document.querySelectorAll('.form-tab');
+    const order = ['safari','carhire','airtransfer','hotel','airbnb','airticket'];
+    const idx = order.indexOf(key);
+    if(tabs[idx]) tabs[idx].classList.add('active');
+  }
+  document.querySelectorAll('.booking-form-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + key);
+  if(panel) panel.classList.add('active');
+}
+
+function goToForm(key){
+  switchTab(key);
+  const target = document.getElementById('book');
+  if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ============================================================
+   BOOKING SUBMISSION
+   ============================================================ */
+function activePanelKey(){
+  const active = document.querySelector('.booking-form-panel.active');
+  return active ? active.id.replace('panel-','') : 'safari';
+}
+
+function collectBooking(){
+  const key = activePanelKey();
+  const data = { type:key };
+
+  const map = {
+    safari:      ['sf-name','sf-phone','sf-email','sf-destination','sf-date','sf-travellers','sf-notes'],
+    carhire:     ['ch-name','ch-idno','ch-nationality','ch-phone','ch-occupation','ch-dlno','ch-dlexpiry',
+                   'ch-residence','ch-email','ch-vehicle','ch-g-name','ch-g-phone','ch-g-occupation','ch-g-idno',
+                   'ch-nok-name','ch-nok-phone','ch-nok-occupation','ch-nok-idno','ch-pickup','ch-pickup-time',
+                   'ch-days','ch-return','ch-return-time','ch-driver','ch-pickuploc','ch-route'],
+    airtransfer: ['at-name','at-phone','at-from','at-to','at-date','at-pax','at-notes'],
+    hotel:       ['ht-name','ht-phone','ht-city','ht-guests','ht-checkin','ht-checkout','ht-notes'],
+    airbnb:      ['ab-name','ab-phone','ab-city','ab-guests','ab-checkin','ab-checkout','ab-notes'],
+    airticket:   ['ft-name','ft-phone','ft-from','ft-to','ft-depart','ft-return','ft-pax','ft-class']
+  };
+
+  (map[key] || []).forEach(id => {
+    const el = document.getElementById(id);
+    if(el) data[id.replace(/^[a-z]{2}-/, '')] = el.value.trim();
+  });
+
+  return data;
+}
+
+function showBookingMsg(text, type){
+  const box = document.getElementById('bookingMsg');
+  box.className = 'msg-box ' + type;
+  box.textContent = text;
+  box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+async function submitBooking(mode){
+  const consent = document.getElementById('consent');
+  const data = collectBooking();
+
+  if(!data.name){
+    showBookingMsg('Please enter your full name before submitting.', 'error');
+    return;
+  }
+  if(!data.phone){
+    showBookingMsg('Please enter a phone number so we can reach you.', 'error');
+    return;
+  }
+  if(!consent.checked){
+    showBookingMsg('Please tick the confirmation box to continue.', 'error');
+    return;
+  }
+  if(data.type === 'carhire'){
+    const termsBox = document.getElementById('ch-terms-consent');
+    if(!data.idno){
+      showBookingMsg('Please enter your ID / Passport number — this is required for the Car Hire Agreement.', 'error');
+      return;
+    }
+    if(!termsBox.checked){
+      showBookingMsg('Please tick the Car Hire Terms & Conditions box to continue.', 'error');
+      return;
+    }
+  }
+
+  const btns = document.querySelectorAll('.booking-btns button');
+  btns.forEach(b => b.disabled = true);
+
+  if(data.type === 'carhire'){
+    // Final availability check right before saving, so two clients can't grab the same car
+    const av = await runAvailCheck();
+    if(av && (av.conflict || av.invalid)){
+      showBookingMsg(av.invalid ? 'The return date/time must be after the pick-up date/time.' : carBusyText(av), 'error');
+      btns.forEach(b => b.disabled = false);
+      return;
+    }
+  }
+
+  const ref = 'PEM-' + Date.now().toString().slice(-6);
+  const payload = buildBookingPayload(ref, data, mode);
+
+  try {
+    const db = await loadFirebase();
+    if(!db) throw new Error('Firebase is not available');
+    await db.ref('bookings/' + ref).set(payload);
+
+    if(mode === 'mpesa'){
+      showBookingMsg(
+        'Thank you, ' + data.name + '. Booking request ' + ref + ' received. ' +
+        'Our team will confirm availability and send you official M-Pesa payment instructions shortly. ' +
+        'Please do not send money until you receive confirmation from PEM TOURS.',
+        'success'
+      );
+    } else {
+      showBookingMsg(
+        'Thank you, ' + data.name + '. Booking request ' + ref + ' has been received. ' +
+        'A member of the PEM TOURS team will contact you on ' + data.phone + ' to confirm the details.',
+        'success'
+      );
+    }
+    showToast('Request ' + ref + ' received — we\'ll be in touch shortly.');
+  } catch(err){
+    console.error('Booking save failed:', err);
+    showBookingMsg(
+      'We could not send your request online just now. Please reach us directly on WhatsApp at ' +
+      '+254 782 817 618 or call +254 728 817 618, and quote reference ' + ref + '.',
+      'error'
+    );
+  } finally {
+    btns.forEach(b => b.disabled = false);
+  }
+}
+
+/* ============================================================
+   BOOKING PAYLOAD — maps each form type onto the common record
+   shape the admin dashboard reads (name, phone, vehicle,
+   location, startDate, endDate, days, total, status, timestamp)
+   ============================================================ */
+function buildBookingPayload(ref, data, mode){
+  const base = {
+    ref,
+    type: data.type,
+    name: data.name || '',
+    phone: data.phone || '',
+    status: 'Pending',
+    paymentPref: mode === 'mpesa' ? 'M-Pesa' : 'To be advised',
+    timestamp: new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' }),
+    createdAt: Date.now(), // sortable, for the admin dashboard — `timestamp` above is display-only
+    notes: data.notes || ''
+  };
+
+  switch(data.type){
+    case 'carhire': {
+      const car = CARS[data.vehicle];
+      const days = parseInt(data.days, 10) || 1;
+      const rate = car ? car.price : 0;
+      return Object.assign(base, {
+        vehicle: car ? car.name : (data.vehicle || 'N/A'),
+        location: data.pickuploc || 'N/A',
+        destination: data.route || '',
+        startDate: data.pickup || '',
+        endDate: data.return || '',
+        days,
+        total: rate * days,
+        vehicleKey: data.vehicle || '',
+        pickupTime: data['pickup-time'] || '',
+        returnTime: data['return-time'] || '',
+        driverOption: data.driver || '',
+        idNo: data.idno || '',
+        licenceNo: data.dlno || '',
+        guarantor: {
+          name: data['g-name'] || '', phone: data['g-phone'] || '',
+          occupation: data['g-occupation'] || '', idNo: data['g-idno'] || ''
+        },
+        nextOfKin: {
+          name: data['nok-name'] || '', phone: data['nok-phone'] || '',
+          occupation: data['nok-occupation'] || '', idNo: data['nok-idno'] || ''
+        }
+      });
+    }
+    case 'safari':
+      return Object.assign(base, {
+        vehicle: 'Safari Package', location: data.destination || 'N/A',
+        startDate: data.date || '', endDate: '', days: null, total: null,
+        travellers: data.travellers || ''
+      });
+    case 'airtransfer':
+      return Object.assign(base, {
+        vehicle: 'Airport Transfer', location: (data.from || '?') + ' → ' + (data.to || '?'),
+        startDate: data.date || '', endDate: '', days: null, total: null,
+        pax: data.pax || ''
+      });
+    case 'hotel':
+      return Object.assign(base, {
+        vehicle: 'Hotel Booking', location: data.city || 'N/A',
+        startDate: data.checkin || '', endDate: data.checkout || '', days: null, total: null,
+        guests: data.guests || ''
+      });
+    case 'airbnb':
+      return Object.assign(base, {
+        vehicle: 'Airbnb / Apartment', location: data.city || 'N/A',
+        startDate: data.checkin || '', endDate: data.checkout || '', days: null, total: null,
+        guests: data.guests || ''
+      });
+    case 'airticket':
+      return Object.assign(base, {
+        vehicle: 'Air Ticket', location: (data.from || '?') + ' → ' + (data.to || '?'),
+        startDate: data.depart || '', endDate: data.return || '', days: null, total: null,
+        pax: data.pax || '', cabinClass: data.class || ''
+      });
+    default:
+      return base;
+  }
+}
+
+/* ============================================================
+   AI TRAVEL GUIDE (rule-based)
+   ============================================================ */
+const KB = [
+  {
+    keys:['safari','mara','amboseli','nakuru','samburu','wildlife','game drive','big five'],
+    reply:'Our most popular safari is the Maasai Mara Classic (3 days) — the Big Five, full-board accommodation and a 4x4 with guide. Amboseli (2 days) is best for elephants with Kilimanjaro views, and Lake Nakuru (1 day) is perfect if you\'re short on time. Which one sounds right for you?'
+  },
+  {
+    keys:['car','vehicle','hire','rent','drive','suv','van','noah','fielder','vitz'],
+    reply:'We have 7 vehicles available. Budget pick: Toyota Vitz at KES 3,500/day. Best all-rounder: Toyota Axio at KES 5,000/day. For families or groups: Toyota Noah (7 seats) at KES 7,500/day, or the 9-seat Tour Van at KES 8,000/day. All are available self-drive or chauffeur-driven. Which would you like?'
+  },
+  {
+    keys:['budget','cheap','affordable','cost','price','how much','expensive'],
+    reply:'Tell me your total budget and how many days you have, and I can suggest the best option. As a guide: a 1-day Lake Nakuru safari or a Toyota Vitz hire at KES 3,500/day are our most affordable options. Would you like me to send a quote?'
+  },
+  {
+    keys:['airport','jkia','transfer','pick','drop','nairobi'],
+    reply:'We offer airport transfers from JKIA Nairobi and all major Kenyan airports, including transfers to and from Nakuru. Just share your flight number, arrival time and passenger count and we\'ll quote you.'
+  },
+  {
+    keys:['hotel','lodge','stay','accommodation','airbnb','apartment'],
+    reply:'We arrange hotel bookings and vetted Airbnb stays across Kenya — from Nakuru lodges to Maasai Mara camps and coastal resorts. Tell me your town, dates and budget per night and I\'ll suggest options.'
+  },
+  {
+    keys:['flight','ticket','plane','air ticket','fly'],
+    reply:'We handle domestic and international air ticketing and will look for the best current fares. Share your departure city, destination and travel dates and we\'ll send options.'
+  },
+  {
+    keys:['plan','itinerary','help','suggest','recommend','where'],
+    reply:'Happy to help. Tell me three things: (1) how many days you have, (2) your rough budget, and (3) whether you prefer wildlife, culture or city travel. I\'ll suggest an itinerary and our team will confirm the details.'
+  },
+  {
+    keys:['contact','phone','call','whatsapp','email','reach'],
+    reply:'You can reach us on +254 782 817 618 or +254 728 817 618, by WhatsApp on the same number, or by email at info@pemtours.co.ke. We\'re open Monday to Saturday, 7am–7pm.'
+  },
+  {
+    keys:['pay','mpesa','deposit','receipt','payment'],
+    reply:'Once we confirm availability we\'ll send you official payment instructions. We issue an official receipt for every confirmed booking. Never send payment before receiving written confirmation from our office.'
+  },
+  {
+    keys:['hello','hi','hey','good morning','good afternoon','jambo'],
+    reply:'Jambo! Welcome to PEM TOURS & Travellers. Are you looking for a safari, a car hire, or travel services like airport transfers and accommodation?'
+  }
+];
+
+function botReply(text){
+  const q = text.toLowerCase();
+  for(const entry of KB){
+    if(entry.keys.some(k => q.includes(k))) return entry.reply;
+  }
+  return 'Thanks for your message. I can help with safaris, car hire, airport transfers, hotels, Airbnb stays and air ticketing. Could you tell me a little more about what you need — and how many days you\'re travelling?';
+}
+
+function addMessage(text, who){
+  const wrap = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.textContent = text;
+  div.appendChild(bubble);
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function sendMessage(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+
+  addMessage(text, 'user');
+  input.value = '';
+
+  const typing = document.getElementById('typing');
+  typing.classList.add('show');
+  const wrap = document.getElementById('chatMessages');
+  wrap.scrollTop = wrap.scrollHeight;
+
+  setTimeout(() => {
+    typing.classList.remove('show');
+    addMessage(botReply(text), 'bot');
+  }, 850);
+}
+
+function quickAsk(text){
+  document.getElementById('chatInput').value = text;
+  sendMessage();
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimer = null;
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+}
+
+/* ============================================================
+   STAT COUNTERS
+   ============================================================ */
+function runCounters(){
+  document.querySelectorAll('[data-count]').forEach(el => {
+    if(el.dataset.done) return;
+    el.dataset.done = '1';
+
+    const target = parseInt(el.dataset.count, 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    function tick(now){
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+function initReveal(){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  buildDots();
+  renderSlide();
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) restartSlider();
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden) clearInterval(slideTimer);
+    else if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) restartSlider();
+  });
+
+  initReveal();
+  const cio = new IntersectionObserver(es => {
+    if(es.some(e => e.isIntersecting)){ runCounters(); es.forEach(e => e.isIntersecting && cio.unobserve(e.target)); }
+  }, { threshold:0.2 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  // warm up Firebase just before the booking form comes into view
+  const book = document.getElementById('book');
+  if(book){
+    const fio = new IntersectionObserver(es => {
+      if(es.some(e => e.isIntersecting)){ loadFirebase(); fio.disconnect(); }
+    }, { rootMargin:'800px 0px' });
+    fio.observe(book);
+  }
+
+  // car hire form: live availability + keep days / return date / return time in step
+  ['ch-return','ch-return-time','ch-pickup-time'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('change', scheduleAvailCheck);
+  });
+  document.getElementById('ch-pickup-time').addEventListener('change', e => {
+    const rt = document.getElementById('ch-return-time');
+    if(!rt.value) rt.value = e.target.value;
+    scheduleAvailCheck();
+  });
+  document.getElementById('ch-return').addEventListener('change', () => {
+    const p = gv('ch-pickup'), r = gv('ch-return');
+    if(!p || !r) return;
+    const diff = Math.round((new Date(r + 'T00:00:00') - new Date(p + 'T00:00:00')) / 864e5);
+    if(diff >= 1){ document.getElementById('ch-days').value = diff; updateCarTotal(); }
+  });
+
+  // Prevent past dates in date inputs
+  const today = toLocalISO(new Date());
+  document.querySelectorAll('input[type="date"]').forEach(inp => {
+    if(!inp.id.includes('return')) inp.min = today;
+  });
+
+  // ESC closes modal / mobile menu
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      closeModal();
+      if(document.getElementById('mobileMenu').classList.contains('open')) toggleMenu();
+    }
+  });
+});
+</script>
+</body>
+</html>

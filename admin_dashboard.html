@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>PEM Tours - Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FIREBASE SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --purple:#7B2FBE; --purple2:#a855f7; --purple3:#c084fc;
+  --green:#1a3d22;  --green2:#2d6b2d;  --green3:#3d8b3d;
+  --cream:#f5f0ff;  --dark:#0d0d1a;    --ink:#1a1a2e;
+  --muted:#6b6b8a;  --amber:#f97316;   --red:#ef4444;
+  --white:#fff;
+}
+
+body {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f0ff 0%, #fff5e6 100%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+/* ============================================================
+   LOGIN SCREEN
+   ============================================================ */
+.login-screen{
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:24px; background:linear-gradient(135deg,var(--dark),var(--green));
+}
+.login-card{
+  width:100%; max-width:380px; background:var(--white); border-radius:16px;
+  padding:36px 32px; box-shadow:0 20px 60px rgba(0,0,0,.35); text-align:center;
+}
+.login-brand-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.4rem;color:var(--purple);letter-spacing:.03em;}
+.login-brand-sub{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:2px;margin-bottom:22px;}
+.login-card h1{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:8px;color:var(--ink);}
+.login-hint{font-size:.78rem;color:var(--muted);margin-bottom:22px;line-height:1.5;}
+.login-field{text-align:left;margin-bottom:14px;}
+.login-field label{display:block;font-size:.7rem;color:var(--muted);margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.login-field input{width:100%;padding:11px 13px;border:1px solid #e2ddf0;border-radius:8px;font-size:.92rem;color:var(--ink);}
+.login-field input:focus{outline:none;border-color:var(--purple2);}
+.login-message{font-size:.78rem;padding:10px 12px;border-radius:8px;margin-bottom:14px;text-align:left;display:none;}
+.login-message.error{background:rgba(239,68,68,.1);color:#991b1b;display:block;}
+.login-message.success{background:rgba(34,197,94,.1);color:#166534;display:block;}
+.login-btn{
+  width:100%;padding:13px;border:none;border-radius:9px;color:#fff;font-weight:700;font-size:.92rem;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));transition:transform .15s;margin-top:4px;
+}
+.login-btn:hover{transform:translateY(-1px);}
+.login-btn:disabled{opacity:.6;cursor:default;transform:none;}
+.login-forgot{display:block;margin-top:16px;font-size:.78rem;color:var(--purple);text-decoration:underline;background:none;border:none;width:100%;}
+.login-back{display:block;margin-top:10px;font-size:.74rem;color:var(--muted);text-decoration:underline;}
+
+/* ============================================================
+   DASHBOARD SHELL
+   ============================================================ */
+.dashboard{ padding:20px; }
+.container { max-width: 1400px; margin: 0 auto; }
+
+header {
+  background: linear-gradient(135deg, #2a0a4a, #1a2e1a);
+  color: white; padding: 26px 30px; border-radius: 12px;
+  margin-bottom: 26px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.header-top{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; }
+header h1 { font-size: 1.6rem; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
+.status-row{ display:flex; align-items:center; gap:8px; font-size:.8rem; color:rgba(255,255,255,.85); flex-wrap:wrap; }
+.status-dot{ width:8px; height:8px; border-radius:50%; background:#888; flex-shrink:0; }
+.status-dot.online{ background:#4ade80; box-shadow:0 0 8px rgba(74,222,128,.7); }
+.status-dot.offline{ background:#f87171; }
+.sync-time{ color:rgba(255,255,255,.55); font-size:.74rem; }
+.sync-time:not(:empty)::before{ content:'· '; }
+.header-actions{ display:flex; align-items:center; gap:14px; }
+.user-email{ font-size:.78rem; color:rgba(255,255,255,.75); }
+.logout-btn{
+  padding:8px 16px; border:1px solid rgba(255,255,255,.3); border-radius:7px; background:transparent;
+  color:#fff; font-size:.76rem; font-weight:600; transition:background .2s;
+}
+.logout-btn:hover{ background:rgba(255,255,255,.12); }
+.back-link{ color:#fff; opacity:.8; font-size:.8rem; text-decoration:underline; }
+
+/* ============================================================
+   METRICS
+   ============================================================ */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px; margin-bottom: 24px;
+}
+.stat-card {
+  background: white; padding: 18px 20px; border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 4px solid var(--purple);
+}
+.stat-card.accent-pending{ border-left-color: var(--amber); }
+.stat-card.accent-confirmed{ border-left-color: #22c55e; }
+.stat-card.accent-cancelled{ border-left-color: var(--red); }
+.stat-card.accent-info{ border-left-color: #6366f1; }
+.stat-card h3 {
+  font-size: 0.7rem; color: #6b6b8a; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 700;
+}
+.stat-card .value {
+  font-size: 1.6rem; color: var(--purple); font-weight: 700;
+  font-family: 'Cormorant Garamond', serif; line-height: 1.1;
+}
+.stat-card .stat-sub{ font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
+
+.service-breakdown{
+  background:white; border-radius:12px; padding:22px 24px; margin-bottom:24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.service-breakdown h3{ font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink); margin-bottom:16px; font-weight:700; }
+.service-row{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+.service-row:last-child{ margin-bottom:0; }
+.service-label{ width:130px; flex-shrink:0; font-size:.82rem; font-weight:600; color:var(--ink); }
+.service-bar-track{ flex:1; background:#f1eef9; border-radius:6px; height:10px; overflow:hidden; }
+.service-bar-fill{ height:100%; background:linear-gradient(90deg,var(--purple),var(--purple2)); border-radius:6px; transition:width .3s; }
+.service-count{ width:84px; flex-shrink:0; text-align:right; font-size:.78rem; color:var(--muted); }
+
+.filters {
+  background: white; padding: 20px; border-radius: 12px; margin-bottom: 24px;
+  display: flex; gap: 15px; flex-wrap: wrap; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.filters input, .filters select {
+  padding: 10px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;
+}
+.filters button {
+  padding: 10px 22px; border: none; border-radius: 8px; font-weight: 600; transition: all 0.2s;
+}
+#exportBtn{ background: linear-gradient(135deg, var(--green3), var(--purple)); color: #fff; }
+#exportBtn:hover{ transform: translateY(-2px); }
+#refreshBtn{ background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+#refreshBtn:hover{ transform: translateY(-2px); }
+
+.bookings-container { display: grid; gap: 18px; }
+
+.booking-card {
+  background: white; border-radius: 12px; padding: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 4px solid #86efac; transition: all 0.3s;
+}
+.booking-card:hover{ box-shadow: 0 8px 24px rgba(0,0,0,0.12); transform: translateY(-2px); }
+.booking-card.pending{ border-left-color: var(--amber); }
+.booking-card.confirmed{ border-left-color: #22c55e; }
+.booking-card.cancelled{ border-left-color: var(--red); opacity: 0.7; }
+
+.booking-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #eee;
+}
+.booking-ref { font-size: 1.25rem; font-weight: 700; color: var(--purple); font-family: 'Cormorant Garamond', serif; }
+.type-badge { display: inline-block; margin-top: 4px; font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+.status-badge {
+  padding: 6px 12px; border-radius: 50px; font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.status-badge.pending{ background: rgba(249, 115, 22, 0.1); color: #c2410c; }
+.status-badge.confirmed{ background: rgba(34, 197, 94, 0.1); color: #166534; }
+.status-badge.cancelled{ background: rgba(239, 68, 68, 0.1); color: #991b1b; }
+
+.booking-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px; margin-bottom: 16px;
+}
+.booking-field { display: flex; flex-direction: column; }
+.booking-field label {
+  font-size: 0.72rem; text-transform: uppercase; color: #6b6b8a;
+  letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 600;
+}
+.booking-field value { font-size: 0.95rem; color: #1a1a2e; font-weight: 500; word-break: break-word; }
+
+.action-buttons { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.btn-small { padding: 8px 16px; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; transition: all 0.2s; }
+.btn-confirm{ background: #22c55e; color: white; }
+.btn-confirm:hover{ background: #16a34a; }
+.btn-cancel{ background: var(--red); color: white; }
+.btn-cancel:hover{ background: #dc2626; }
+.btn-delete{ background: #6b7280; color: white; }
+.btn-delete:hover{ background: #4b5563; }
+
+.empty-state { text-align: center; padding: 60px 20px; color: #6b6b8a; }
+.empty-state h2 { font-size: 1.4rem; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; padding: 12px 22px; border-radius: 8px;
+  font-size: .85rem; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  opacity: 0; pointer-events: none; transition: all .25s; z-index: 200; max-width: 90vw; text-align: center;
+}
+.toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.error{ background: #991b1b; }
+
+@media (max-width: 768px) {
+  header h1 { font-size: 1.35rem; }
+  .header-actions{ width: 100%; justify-content: space-between; }
+  .booking-grid { grid-template-columns: 1fr; }
+  .filters { flex-direction: column; }
+  .filters input, .filters select, .filters button { width: 100%; }
+  .service-label{ width: 100px; font-size: .76rem; }
+}
+
+/* ===== LEDGER TAB ===== */
+.view-tabs{display:flex;gap:8px;margin:0 0 20px;}
+.view-tab{padding:10px 22px;border:1px solid #e2ddf0;background:#fff;border-radius:9px;font-weight:600;font-size:.85rem;color:var(--muted);}
+.view-tab.active{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;border-color:transparent;}
+.ledger-wrap{overflow-x:auto;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:20px;}
+.ledger-table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:980px;}
+.ledger-table th{background:var(--green);color:#fff;text-align:left;padding:10px 8px;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+.ledger-table td{padding:5px 6px;border-bottom:1px solid #eee9f7;white-space:nowrap;}
+.ledger-table input{width:100%;padding:6px 7px;border:1px solid #e2ddf0;border-radius:6px;font-size:.8rem;min-width:70px;}
+.ledger-table input:focus{outline:none;border-color:var(--purple2);}
+.ledger-table input.num{text-align:right;width:92px;}
+.ledger-table input.narrow{width:64px;min-width:0;}
+.ledger-table td.bal{text-align:right;font-weight:700;color:#16a34a;}
+.ledger-table td.bal.neg{color:var(--red);}
+.ledger-table tfoot td{background:var(--cream);font-weight:700;padding:10px 8px;text-align:right;}
+.ledger-note{font-size:.72rem;color:var(--muted);margin:-8px 0 16px;}
+.ledger-err{background:rgba(239,68,68,.1);color:#991b1b;padding:12px 14px;border-radius:8px;font-size:.8rem;margin-bottom:16px;}
+.ledger-sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;}
+.ledger-sum h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:14px 14px 4px;}
+.ledger-sum table{width:100%;border-collapse:collapse;font-size:.8rem;}
+.ledger-sum th,.ledger-sum td{padding:7px 14px;text-align:right;border-bottom:1px solid #eee9f7;}
+.ledger-sum th:first-child,.ledger-sum td:first-child{text-align:left;}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     LOGIN SCREEN
+     ============================================================ -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-brand-name">PEM TOURS</div>
+    <div class="login-brand-sub">Staff Admin</div>
+    <h1>Sign In</h1>
+    <p class="login-hint">Staff access only. Contact the site administrator if you need an account.</p>
+    <form id="loginForm" novalidate>
+      <div class="login-field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required autocomplete="username">
+      </div>
+      <div class="login-field">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+      </div>
+      <div id="loginMessage" class="login-message"></div>
+      <button type="submit" id="loginBtn" class="login-btn">Sign In</button>
+    </form>
+    <button type="button" id="forgotBtn" class="login-forgot">Forgot password?</button>
+    <a href="index.html" class="login-back">← Back to Website</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     DASHBOARD (hidden until signed in)
+     ============================================================ -->
+<div id="dashboard" class="dashboard" style="display:none;">
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <div>
+          <h1>PEM Tours Admin Dashboard</h1>
+          <div class="status-row">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="firebaseStatus">Connecting…</span>
+            <span class="sync-time" id="syncTime"></span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span class="user-email" id="userEmail"></span>
+          <button class="logout-btn" id="logoutBtn">Log Out</button>
+        </div>
+      </div>
+      <p style="margin-top:14px;"><a href="index.html" class="back-link">← Back to Website</a></p>
+    </header>
+
+    <div class="view-tabs">
+      <button class="view-tab active" data-view="bookings">Bookings</button>
+      <button class="view-tab" data-view="ledger">Ledger</button>
+    </div>
+    <div id="viewBookings">
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Bookings</h3>
+        <div class="value" id="totalBookings">0</div>
+      </div>
+      <div class="stat-card accent-pending">
+        <h3>Pending</h3>
+        <div class="value" id="pendingCount" style="color: var(--amber);">0</div>
+      </div>
+      <div class="stat-card accent-confirmed">
+        <h3>Confirmed</h3>
+        <div class="value" id="confirmedCount" style="color: #22c55e;">0</div>
+      </div>
+      <div class="stat-card accent-cancelled">
+        <h3>Cancelled</h3>
+        <div class="value" id="cancelledCount" style="color: var(--red);">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Conversion Rate</h3>
+        <div class="value" id="conversionRate">0%</div>
+        <div class="stat-sub">Confirmed ÷ total bookings</div>
+      </div>
+      <div class="stat-card accent-confirmed">
+        <h3>Confirmed Revenue</h3>
+        <div class="value" id="confirmedRevenue" style="color: #16a34a;">KES 0</div>
+        <div class="stat-sub">Car hire only — other services are quoted individually</div>
+      </div>
+      <div class="stat-card accent-pending">
+        <h3>Pending Pipeline</h3>
+        <div class="value" id="pendingPipeline" style="color: var(--amber);">KES 0</div>
+        <div class="stat-sub">Car hire only — awaiting confirmation</div>
+      </div>
+      <div class="stat-card accent-info">
+        <h3>Upcoming (7 Days)</h3>
+        <div class="value" id="upcomingCount" style="color: #6366f1;">0</div>
+        <div class="stat-sub">All services, start date this week</div>
+      </div>
+    </div>
+
+    <!-- Service breakdown -->
+    <div class="service-breakdown">
+      <h3>Bookings by Service</h3>
+      <div id="serviceBreakdown"></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <input type="text" id="searchBox" placeholder="Search by name or booking ref...">
+      <select id="statusFilter">
+        <option value="">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <select id="typeFilter">
+        <option value="">All Services</option>
+        <option value="carhire">Car Hire</option>
+        <option value="safari">Safari</option>
+        <option value="airtransfer">Airport Transfer</option>
+        <option value="hotel">Hotel</option>
+        <option value="airbnb">Airbnb</option>
+        <option value="airticket">Air Ticket</option>
+      </select>
+      <button id="exportBtn">Export CSV</button>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+
+    <!-- Bookings List -->
+    <div id="bookingsList" class="bookings-container">
+      <div class="empty-state">
+        <h2>Loading bookings…</h2>
+        <p>Connecting to Firebase</p>
+      </div>
+    </div>
+    </div><!-- /viewBookings -->
+
+    <div id="viewLedger" style="display:none;">
+      <div class="stats-grid">
+        <div class="stat-card accent-confirmed"><h3>Total Amount In</h3><div class="value" id="ldIn">0</div></div>
+        <div class="stat-card accent-pending"><h3>Total Amount Out</h3><div class="value" id="ldOut">0</div></div>
+        <div class="stat-card"><h3>Net Balance</h3><div class="value" id="ldBal">0</div><div class="stat-sub">Amount In − Amount Out</div></div>
+        <div class="stat-card accent-info"><h3>Hires</h3><div class="value" id="ldHires">0</div></div>
+        <div class="stat-card accent-info"><h3>Days Hired</h3><div class="value" id="ldDays">0</div></div>
+      </div>
+      <div class="filters">
+        <select id="ledgerMonth"><option value="all">All months</option></select>
+        <button id="ledgerAddBtn">+ Add walk-in row</button>
+        <button id="ledgerXlsBtn">Download Excel</button>
+      </div>
+      <p class="ledger-note">Confirmed website bookings appear here automatically. Fill in agreement no., plate, amount in/out and comments — balances and totals update as you type and save to the database.</p>
+      <div id="ledgerError"></div>
+      <div class="ledger-wrap"><table class="ledger-table">
+        <thead><tr><th>Date</th><th>Name</th><th>Phone</th><th>Days</th><th>Agree No</th><th>Plate</th><th>Amount In</th><th>Amount Out</th><th>Balance</th><th>Comments</th><th>Service</th><th></th></tr></thead>
+        <tbody id="ledgerBody"></tbody>
+        <tfoot><tr><td colspan="3">TOTAL</td><td id="ftDays"></td><td></td><td></td><td id="ftIn"></td><td id="ftOut"></td><td id="ftBal"></td><td colspan="3"></td></tr></tfoot>
+      </table></div>
+      <div class="ledger-sum" id="ledgerSummary"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   FIREBASE
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyAZe8Vocr-WMjIDnKKNuP9qQOs1da6gi3Q",
+  authDomain: "pem-tours-and-travel.firebaseapp.com",
+  // TODO: confirm this against Firebase Console → Realtime Database (the URL shown at
+  // the top of the data viewer) once you've created the database for this project.
+  // It couldn't be verified from here — the SDK will only fail quietly (no bookings
+  // will load) if it's wrong, so please double-check it once.
+  databaseURL: "https://pem-tours-and-travel-default-rtdb.firebaseio.com",
+  projectId: "pem-tours-and-travel",
+  storageBucket: "pem-tours-and-travel.firebasestorage.app",
+  messagingSenderId: "846636546177",
+  appId: "1:846636546177:web:49a7aa091ec2f771503580",
+  measurementId: "G-4TN1QLN4RY"
+};
+
+const TYPE_LABELS = {
+  carhire: 'Car Hire',
+  safari: 'Safari',
+  airtransfer: 'Airport Transfer',
+  hotel: 'Hotel',
+  airbnb: 'Airbnb',
+  airticket: 'Air Ticket'
+};
+const SERVICE_ORDER = ['carhire', 'safari', 'airtransfer', 'hotel', 'airbnb', 'airticket'];
+
+let auth = null;
+let database = null;
+let allBookings = {};
+let bookingsRef = null;
+let bookingsListener = null;
+
+try {
+  firebase.initializeApp(firebaseConfig);
+  auth = firebase.auth();
+  database = firebase.database();
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+} catch(err) {
+  console.error('Firebase init error:', err);
+}
+
+/* ============================================================
+   AUTH — the login screen only controls what this browser tab
+   shows. The real protection is the Realtime Database security
+   rules (see the note left for the site owner) requiring
+   auth != null to read or modify the "bookings" node.
+   ============================================================ */
+if (auth) {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      showDashboard(user);
+    } else {
+      showLogin();
+    }
+  });
+} else {
+  showLoginMessage('Could not reach Firebase. Check your connection and reload the page.', true);
+}
+
+function showDashboard(user){
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('userEmail').textContent = user.email || '';
+  loadBookings();
+  loadLedger();
+}
+
+function showLogin(){
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  stopBookingsListener();
+  stopLedger();
+  allBookings = {};
+}
+
+function friendlyAuthError(err){
+  switch(err && err.code){
+    case 'auth/invalid-email': return 'Please enter a valid email address.';
+    case 'auth/user-disabled': return 'This account has been disabled.';
+    case 'auth/user-not-found':
+    case 'auth/wrong-password':
+    case 'auth/invalid-credential': return 'Incorrect email or password.';
+    case 'auth/too-many-requests': return 'Too many attempts. Please wait a moment and try again.';
+    case 'auth/network-request-failed': return 'Network error — check your connection.';
+    default: return (err && err.message) || 'Sign-in failed. Please try again.';
+  }
+}
+
+function showLoginMessage(msg, isError){
+  const box = document.getElementById('loginMessage');
+  box.textContent = msg;
+  box.className = 'login-message ' + (isError ? 'error' : 'success');
+}
+
+function handleLogin(e){
+  e.preventDefault();
+  if(!auth) return;
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const btn = document.getElementById('loginBtn');
+
+  document.getElementById('loginMessage').className = 'login-message';
+  btn.disabled = true;
+  btn.textContent = 'Signing in…';
+
+  auth.signInWithEmailAndPassword(email, password)
+    .catch(err => showLoginMessage(friendlyAuthError(err), true))
+    .finally(() => {
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    });
+}
+
+function handleForgotPassword(){
+  if(!auth) return;
+  const email = document.getElementById('loginEmail').value.trim();
+  if(!email){
+    showLoginMessage('Enter your email above first, then click "Forgot password?".', true);
+    return;
+  }
+  auth.sendPasswordResetEmail(email)
+    .then(() => showLoginMessage('Password reset email sent — check your inbox.', false))
+    .catch(err => showLoginMessage(friendlyAuthError(err), true));
+}
+
+function handleLogout(){
+  if(auth) auth.signOut();
+}
+
+/* ============================================================
+   HELPERS — output-escape everything that came from a public,
+   unauthenticated form submission before it touches innerHTML.
+   ============================================================ */
+function escapeHtml(s){
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escapeAttr(s){
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+let toastTimer = null;
+function showToast(msg, isError){
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.toggle('error', !!isError);
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+/* ============================================================
+   DATA LOADING
+   ============================================================ */
+function loadBookings(){
+  if(!database) return;
+  stopBookingsListener();
+
+  bookingsRef = database.ref('bookings');
+  bookingsListener = bookingsRef.on('value', (snapshot) => {
+    allBookings = snapshot.val() || {};
+    filterBookings();
+    updateStats(allBookings);
+    renderLedger();
+    backfillAvailability();
+    document.getElementById('syncTime').textContent = 'Updated ' + new Date().toLocaleTimeString('en-KE');
+    updateConnectionStatus(true);
+  }, (err) => {
+    console.error('Firebase read error:', err);
+    updateConnectionStatus(false);
+  });
+}
+
+function stopBookingsListener(){
+  if(bookingsRef && bookingsListener) bookingsRef.off('value', bookingsListener);
+  bookingsRef = null;
+  bookingsListener = null;
+}
+
+function updateConnectionStatus(connected){
+  const dot = document.getElementById('statusDot');
+  const label = document.getElementById('firebaseStatus');
+  if(connected){
+    dot.classList.remove('offline');
+    dot.classList.add('online');
+    label.textContent = 'Live';
+  } else {
+    dot.classList.remove('online');
+    dot.classList.add('offline');
+    label.textContent = 'Connection error — check your database rules';
+  }
+}
+
+/* ============================================================
+   METRICS
+   ============================================================ */
+function computeMetrics(bookings){
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+  const weekAhead = new Date(startOfToday.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+  let total = 0, pending = 0, confirmed = 0, cancelled = 0;
+  let confirmedRevenue = 0, pendingPipeline = 0, upcoming = 0;
+  const serviceCounts = {};
+
+  for(const ref in bookings){
+    const b = bookings[ref];
+    total++;
+    const status = b.status || 'Pending';
+
+    if(status === 'Confirmed'){ confirmed++; confirmedRevenue += Number(b.total) || 0; }
+    else if(status === 'Cancelled'){ cancelled++; }
+    else { pending++; pendingPipeline += Number(b.total) || 0; }
+
+    const type = b.type || 'other';
+    serviceCounts[type] = (serviceCounts[type] || 0) + 1;
+
+    if(status !== 'Cancelled' && b.startDate){
+      const d = new Date(b.startDate + 'T00:00:00');
+      if(!isNaN(d) && d >= startOfToday && d <= weekAhead) upcoming++;
+    }
+  }
+
+  return {
+    total, pending, confirmed, cancelled, confirmedRevenue, pendingPipeline, upcoming,
+    conversionRate: total > 0 ? Math.round((confirmed / total) * 100) : 0,
+    serviceCounts
+  };
+}
+
+function updateStats(bookings){
+  const m = computeMetrics(bookings);
+  document.getElementById('totalBookings').textContent = m.total;
+  document.getElementById('pendingCount').textContent = m.pending;
+  document.getElementById('confirmedCount').textContent = m.confirmed;
+  document.getElementById('cancelledCount').textContent = m.cancelled;
+  document.getElementById('conversionRate').textContent = m.conversionRate + '%';
+  document.getElementById('confirmedRevenue').textContent = 'KES ' + m.confirmedRevenue.toLocaleString();
+  document.getElementById('pendingPipeline').textContent = 'KES ' + m.pendingPipeline.toLocaleString();
+  document.getElementById('upcomingCount').textContent = m.upcoming;
+  renderServiceBreakdown(m.serviceCounts, m.total);
+}
+
+function renderServiceBreakdown(serviceCounts, total){
+  const wrap = document.getElementById('serviceBreakdown');
+  if(total === 0){
+    wrap.innerHTML = '<p style="color:var(--muted);font-size:.85rem;">No bookings yet</p>';
+    return;
+  }
+  const maxCount = Math.max(1, ...SERVICE_ORDER.map(t => serviceCounts[t] || 0), ...Object.keys(serviceCounts).filter(t => !SERVICE_ORDER.includes(t)).map(t => serviceCounts[t]));
+  let html = '';
+  for(const type of SERVICE_ORDER){
+    const count = serviceCounts[type] || 0;
+    const pct = Math.round((count / total) * 100);
+    const barPct = Math.round((count / maxCount) * 100);
+    html += '<div class="service-row">'
+      + '<div class="service-label">' + escapeHtml(TYPE_LABELS[type]) + '</div>'
+      + '<div class="service-bar-track"><div class="service-bar-fill" style="width:' + barPct + '%"></div></div>'
+      + '<div class="service-count">' + count + ' (' + pct + '%)</div>'
+      + '</div>';
+  }
+  const otherCount = Object.keys(serviceCounts).filter(t => !SERVICE_ORDER.includes(t)).reduce((s, t) => s + serviceCounts[t], 0);
+  if(otherCount > 0){
+    const pct = Math.round((otherCount / total) * 100);
+    const barPct = Math.round((otherCount / maxCount) * 100);
+    html += '<div class="service-row">'
+      + '<div class="service-label">Other / Enquiry</div>'
+      + '<div class="service-bar-track"><div class="service-bar-fill" style="width:' + barPct + '%"></div></div>'
+      + '<div class="service-count">' + otherCount + ' (' + pct + '%)</div>'
+      + '</div>';
+  }
+  wrap.innerHTML = html;
+}
+
+/* ============================================================
+   RENDER BOOKINGS
+   ============================================================ */
+function renderBookings(bookings){
+  const container = document.getElementById('bookingsList');
+  const entries = Object.entries(bookings);
+
+  if(entries.length === 0){
+    container.innerHTML =
+      '<div class="empty-state"><h2>No bookings found</h2>'
+      + '<p>Try clearing your search or filters, or check back once customers start booking.</p></div>';
+    return;
+  }
+
+  entries.sort((a, b) => {
+    const ca = a[1].createdAt || 0;
+    const cb = b[1].createdAt || 0;
+    if(cb !== ca) return cb - ca;
+    return String(b[0]).localeCompare(String(a[0]));
+  });
+
+  let html = '';
+  for(const [ref, booking] of entries){
+    const status = booking.status || 'Pending';
+    const statusClass = escapeAttr(status.toLowerCase());
+    const typeLabel = TYPE_LABELS[booking.type] || 'Enquiry';
+    const serviceLabel = booking.type === 'carhire' ? 'Vehicle' : 'Service';
+    const durationText = booking.days ? booking.days + ' day(s)' : 'To be confirmed';
+    const totalText = (booking.total === null || booking.total === undefined)
+      ? 'Quote pending'
+      : 'KES ' + Number(booking.total).toLocaleString();
+    const safeRef = escapeAttr(ref);
+
+    html += `
+      <div class="booking-card ${statusClass}">
+        <div class="booking-header">
+          <div>
+            <div class="booking-ref">${escapeHtml(booking.ref || ref)}</div>
+            <span class="type-badge">${escapeHtml(typeLabel)}</span>
+          </div>
+          <span class="status-badge ${statusClass}">${escapeHtml(status)}</span>
+        </div>
+
+        <div class="booking-grid">
+          <div class="booking-field">
+            <label>Customer Name</label>
+            <value>${escapeHtml(booking.name) || 'N/A'}</value>
+          </div>
+          <div class="booking-field">
+            <label>Phone</label>
+            <value>${escapeHtml(booking.phone) || 'N/A'}</value>
+          </div>
+          <div class="booking-field">
+            <label>${serviceLabel}</label>
+            <value>${escapeHtml(booking.vehicle) || 'N/A'}</value>
+          </div>
+          <div class="booking-field">
+            <label>Location</label>
+            <value>${escapeHtml(booking.location) || 'N/A'}</value>
+          </div>
+          <div class="booking-field">
+            <label>Start Date</label>
+            <value>${escapeHtml(booking.startDate) || 'N/A'}</value>
+          </div>
+          <div class="booking-field">
+            <label>End Date</label>
+            <value>${escapeHtml(booking.endDate) || 'N/A'}</value>
+          </div>
+          <div class="booking-field">
+            <label>Duration</label>
+            <value>${durationText}</value>
+          </div>
+          <div class="booking-field">
+            <label>Total Amount</label>
+            <value style="color: #16a34a; font-weight: 700;">${totalText}</value>
+          </div>
+          <div class="booking-field">
+            <label>Submitted</label>
+            <value>${escapeHtml(booking.timestamp) || 'N/A'}</value>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          ${status !== 'Confirmed' ? `<button class="btn-small btn-confirm" data-ref="${safeRef}" data-action="confirm">Confirm</button>` : ''}
+          ${status !== 'Cancelled' ? `<button class="btn-small btn-cancel" data-ref="${safeRef}" data-action="cancel">Cancel</button>` : ''}
+          <button class="btn-small btn-delete" data-ref="${safeRef}" data-action="delete">Delete</button>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+}
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+function updateBookingStatus(ref, newStatus){
+  if(!database) return;
+  if(!confirm(`Update booking to ${newStatus}?`)) return;
+
+  database.ref('bookings/' + ref + '/status').set(newStatus)
+    .then(() => syncAvailability(ref, newStatus))
+    .then(() => showToast(`Booking ${ref} marked as ${newStatus}`))
+    .catch(err => showToast('Error: ' + err.message, true));
+}
+
+function deleteBooking(ref){
+  if(!database) return;
+  if(!confirm('Delete this booking? This cannot be undone.')) return;
+
+  database.ref('bookings/' + ref).remove()
+    .then(() => database.ref('availability/' + ref).remove())
+    .then(() => showToast(`Booking ${ref} deleted`))
+    .catch(err => showToast('Error: ' + err.message, true));
+}
+
+/* ============================================================
+   FILTER / SEARCH
+   ============================================================ */
+function filterBookings(){
+  const search = document.getElementById('searchBox').value.toLowerCase();
+  const statusFilter = document.getElementById('statusFilter').value;
+  const typeFilter = document.getElementById('typeFilter').value;
+
+  const filtered = {};
+  for(const ref in allBookings){
+    const booking = allBookings[ref];
+    const matchesSearch = !search
+      || (booking.name && booking.name.toLowerCase().includes(search))
+      || (booking.ref && booking.ref.toLowerCase().includes(search))
+      || (booking.phone && booking.phone.includes(search));
+    const matchesStatus = !statusFilter || booking.status === statusFilter;
+    const matchesType = !typeFilter || booking.type === typeFilter;
+
+    if(matchesSearch && matchesStatus && matchesType) filtered[ref] = booking;
+  }
+
+  renderBookings(filtered);
+}
+
+/* ============================================================
+   CSV EXPORT — guards against spreadsheet formula injection
+   (a field starting with =, +, -, or @ is neutralised).
+   ============================================================ */
+function csvSafe(v){
+  let s = String(v == null ? '' : v);
+  if(/^[=+\-@]/.test(s)) s = "'" + s;
+  return s.replace(/"/g, '""');
+}
+
+function exportToCSV(){
+  let csv = 'Booking Ref,Type,Name,Phone,Service,Location,Start Date,End Date,Days,Total,Status,Timestamp\n';
+
+  for(const ref in allBookings){
+    const b = allBookings[ref];
+    csv += `"${csvSafe(b.ref)}","${csvSafe(TYPE_LABELS[b.type] || b.type || '')}","${csvSafe(b.name)}","${csvSafe(b.phone)}",`
+         + `"${csvSafe(b.vehicle)}","${csvSafe(b.location)}","${csvSafe(b.startDate)}","${csvSafe(b.endDate)}",`
+         + `${b.days != null ? Number(b.days) : ''},${b.total != null ? Number(b.total) : ''},"${csvSafe(b.status)}","${csvSafe(b.timestamp)}"\n`;
+  }
+
+  const link = document.createElement('a');
+  link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  link.download = 'pem-tours-bookings-' + new Date().toISOString().split('T')[0] + '.csv';
+  link.click();
+  showToast('CSV export started');
+}
+
+/* ============================================================
+   WIRE UP EVENTS
+   ============================================================ */
+document.getElementById('loginForm').addEventListener('submit', handleLogin);
+document.getElementById('forgotBtn').addEventListener('click', handleForgotPassword);
+document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+document.getElementById('searchBox').addEventListener('input', filterBookings);
+document.getElementById('statusFilter').addEventListener('change', filterBookings);
+document.getElementById('typeFilter').addEventListener('change', filterBookings);
+document.getElementById('exportBtn').addEventListener('click', exportToCSV);
+document.getElementById('refreshBtn').addEventListener('click', () => location.reload());
+
+document.getElementById('bookingsList').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-action]');
+  if(!btn) return;
+  const ref = btn.dataset.ref;
+  const action = btn.dataset.action;
+  if(action === 'confirm') updateBookingStatus(ref, 'Confirmed');
+  else if(action === 'cancel') updateBookingStatus(ref, 'Cancelled');
+  else if(action === 'delete') deleteBooking(ref);
+});
+
+/* ============================================================
+   LEDGER — staff-only. Confirmed bookings + manual walk-in rows.
+   Staff fields are stored under database "ledger/<ref>".
+   ============================================================ */
+const MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+let ledgerData = {}, ledgerRef = null, ledgerListener = null, ledgerPending = false;
+
+function loadLedger(){
+  if(!database) return;
+  stopLedger();
+  ledgerRef = database.ref('ledger');
+  ledgerListener = ledgerRef.on('value', snap => {
+    ledgerData = snap.val() || {};
+    document.getElementById('ledgerError').innerHTML = '';
+    if(ledgerBusy()){ ledgerPending = true; return; }
+    renderLedger();
+  }, err => {
+    console.error('Ledger read error:', err);
+    document.getElementById('ledgerError').innerHTML = '<div class="ledger-err">Could not read the ledger. Publish the database rules for the "ledger" node (see setup notes).</div>';
+  });
+}
+function stopLedger(){
+  if(ledgerRef && ledgerListener) ledgerRef.off('value', ledgerListener);
+  ledgerRef = null; ledgerListener = null; ledgerData = {};
+}
+function ledgerBusy(){
+  const a = document.activeElement;
+  return !!(a && a.tagName === 'INPUT' && a.closest && a.closest('#ledgerBody'));
+}
+function monthLabel(m){ return MONTHS[+m.slice(5,7) - 1] + ' ' + m.slice(0,4); }
+function fmtKes(n){ return Number(n || 0).toLocaleString('en-KE'); }
+function numOrNull(v){ return (v === '' || v == null || isNaN(Number(v))) ? null : Number(v); }
+
+function ledgerRows(){
+  const rows = [];
+  for(const ref in allBookings){
+    const b = allBookings[ref];
+    if(b.status !== 'Confirmed') continue;
+    const l = ledgerData[ref] || {};
+    const date = /^\d{4}-\d{2}-\d{2}$/.test(b.startDate || '') ? b.startDate : new Date(b.createdAt || Date.now()).toISOString().slice(0,10);
+    rows.push({ key:ref, ref:b.ref || ref, manual:false, date, name:b.name || '', phone:b.phone || '',
+      days: l.days != null ? l.days : b.days, service: b.type === 'carhire' ? (b.vehicle || 'Car Hire') : (TYPE_LABELS[b.type] || 'Enquiry'),
+      agreeNo:l.agreeNo || '', plate:l.plate || '', amountIn:l.amountIn, amountOut:l.amountOut, comments:l.comments || '', quoted:b.total });
+  }
+  for(const key in ledgerData){
+    const l = ledgerData[key];
+    if(!l || !l.manual) continue;
+    rows.push({ key, ref:'', manual:true, date:l.date || new Date().toISOString().slice(0,10), name:l.name || '', phone:l.phone || '',
+      days:l.days, service:'Walk-in', agreeNo:l.agreeNo || '', plate:l.plate || '', amountIn:l.amountIn, amountOut:l.amountOut, comments:l.comments || '' });
+  }
+  rows.sort((a, b) => a.date.localeCompare(b.date));
+  return rows;
+}
+
+function renderLedger(){
+  const body = document.getElementById('ledgerBody');
+  if(!body) return;
+  const all = ledgerRows();
+  const sel = document.getElementById('ledgerMonth');
+  const months = [...new Set(all.map(r => r.date.slice(0,7)))].sort();
+  const cur = sel.value || 'all';
+  sel.innerHTML = '<option value="all">All months</option>' + months.map(m => `<option value="${m}">${monthLabel(m)}</option>`).join('');
+  sel.value = months.includes(cur) ? cur : 'all';
+  const rows = sel.value === 'all' ? all : all.filter(r => r.date.startsWith(sel.value));
+
+  body.innerHTML = rows.length ? rows.map(r => {
+    const k = escapeAttr(r.key);
+    const txt = (f, v, cls) => `<input data-f="${f}" class="${cls || ''}" value="${escapeAttr(v)}">`;
+    const num = (f, v, ph) => `<input data-f="${f}" class="num" type="number" step="any" value="${v == null ? '' : escapeAttr(v)}" placeholder="${ph == null ? '' : escapeAttr(ph)}">`;
+    return `<tr data-key="${k}" data-manual="${r.manual ? 1 : 0}">
+      <td>${r.manual ? `<input data-f="date" type="date" value="${escapeAttr(r.date)}">` : escapeHtml(r.date.split('-').reverse().join('/'))}</td>
+      <td>${r.manual ? txt('name', r.name) : escapeHtml(r.name)}</td>
+      <td>${r.manual ? txt('phone', r.phone) : escapeHtml(r.phone)}</td>
+      <td><input data-f="days" class="num narrow days" type="number" step="0.5" value="${r.days == null ? '' : escapeAttr(r.days)}"></td>
+      <td>${txt('agreeNo', r.agreeNo, 'narrow')}</td>
+      <td>${txt('plate', r.plate)}</td>
+      <td>${num('amountIn', r.amountIn, r.quoted)}</td>
+      <td>${num('amountOut', r.amountOut)}</td>
+      <td class="bal">0</td>
+      <td>${txt('comments', r.comments)}</td>
+      <td>${escapeHtml(r.service)}</td>
+      <td>${r.manual ? `<button class="btn-small btn-delete" data-del="${k}">×</button>` : ''}</td></tr>`;
+  }).join('') : '<tr><td colspan="12" style="padding:28px;text-align:center;color:var(--muted);">No confirmed bookings yet. Confirm a booking or add a walk-in row.</td></tr>';
+
+  // Summary tables
+  const agg = (list, keyFn) => { const m = {}; list.forEach(r => { const k = keyFn(r); const o = m[k] = m[k] || {n:0,d:0,i:0,o:0}; o.n++; o.d += Number(r.days) || 0; o.i += Number(r.amountIn) || 0; o.o += Number(r.amountOut) || 0; }); return m; };
+  const tbl = (title, first, m) => `<div class="ledger-wrap"><h3>${title}</h3><table><tr><th>${first}</th><th>Hires</th><th>Days</th><th>In</th><th>Out</th><th>Balance</th></tr>`
+    + Object.keys(m).sort().map(k => `<tr><td>${escapeHtml(k)}</td><td>${m[k].n}</td><td>${m[k].d}</td><td>${fmtKes(m[k].i)}</td><td>${fmtKes(m[k].o)}</td><td>${fmtKes(m[k].i - m[k].o)}</td></tr>`).join('') + '</table></div>';
+  document.getElementById('ledgerSummary').innerHTML =
+    tbl('By month', 'Month', Object.fromEntries(Object.entries(agg(all, r => r.date.slice(0,7))).map(([k, v]) => [k, v])) ).replace(/<td>(\d{4}-\d{2})<\/td>/g, (_, m) => `<td>${monthLabel(m)}</td>`)
+    + tbl('By vehicle (plate)', 'Plate', agg(rows, r => (r.plate || '—').toUpperCase().trim()));
+  updateLedgerTotals();
+}
+
+function updateLedgerTotals(){
+  let tin = 0, tout = 0, tdays = 0, n = 0;
+  document.querySelectorAll('#ledgerBody tr[data-key]').forEach(tr => {
+    const v = f => Number(tr.querySelector(`[data-f="${f}"]`).value) || 0;
+    const bal = v('amountIn') - v('amountOut');
+    const cell = tr.querySelector('.bal');
+    cell.textContent = fmtKes(bal);
+    cell.classList.toggle('neg', bal < 0);
+    tin += v('amountIn'); tout += v('amountOut'); tdays += v('days'); n++;
+  });
+  const set = (id, t) => { document.getElementById(id).textContent = t; };
+  set('ldIn', 'KES ' + fmtKes(tin)); set('ldOut', 'KES ' + fmtKes(tout)); set('ldBal', 'KES ' + fmtKes(tin - tout));
+  set('ldHires', n); set('ldDays', tdays);
+  set('ftIn', fmtKes(tin)); set('ftOut', fmtKes(tout)); set('ftBal', fmtKes(tin - tout)); set('ftDays', tdays);
+}
+
+function saveLedgerField(input){
+  const tr = input.closest('tr'); if(!tr || !database) return;
+  const f = input.dataset.f;
+  const val = ['days','amountIn','amountOut'].includes(f) ? numOrNull(input.value) : input.value.trim();
+  database.ref('ledger/' + tr.dataset.key + '/' + f).set(val === '' ? null : val)
+    .catch(err => showToast('Error saving: ' + err.message, true));
+}
+
+function addLedgerRow(){
+  if(!database) return;
+  const m = document.getElementById('ledgerMonth').value;
+  const date = (m !== 'all' ? m + '-01' : new Date().toISOString().slice(0,10));
+  database.ref('ledger/M' + Date.now()).set({ manual:true, date, name:'', phone:'', createdAt:Date.now() })
+    .catch(err => showToast('Error: ' + err.message, true));
+}
+
+function exportLedgerXlsx(){
+  if(typeof XLSX === 'undefined'){ showToast('Excel library did not load — check your connection', true); return; }
+  const all = ledgerRows();
+  if(!all.length){ showToast('Nothing in the ledger yet', true); return; }
+  const H = ['DATES','NAMES','PHONE NO','NO OF DAYS','AGREE NO','NO PLATES','AMOUNT IN','AMOUNT OUT','BALANCE','COMMENTS','SERVICE','BOOKING REF'];
+  const S = v => (v == null || v === '') ? null : { t:'s', v:String(v) };
+  const N = v => (v == null || v === '') ? null : { t:'n', v:Number(v), z:'#,##0.##' };
+  const cells = (r, i) => [{ t:'d', v:new Date(r.date + 'T00:00:00'), z:'dd/mm/yyyy' }, S(r.name), S(r.phone), N(r.days), S(r.agreeNo), S(r.plate),
+    N(r.amountIn), N(r.amountOut), { t:'n', f:`G${i}-H${i}`, z:'#,##0' }, S(r.comments), S(r.service), S(r.ref)];
+  const widths = [12,26,15,11,10,14,13,13,12,28,18,14].map(w => ({ wch:w }));
+  const totals = (t, label) => [null, { t:'s', v:label }, null, { t:'n', f:`SUM(D2:D${t-1})` }, null, null,
+    { t:'n', f:`SUM(G2:G${t-1})`, z:'#,##0' }, { t:'n', f:`SUM(H2:H${t-1})`, z:'#,##0' }, { t:'n', f:`SUM(I2:I${t-1})`, z:'#,##0' }];
+  const wb = XLSX.utils.book_new();
+  const byMonth = {};
+  all.forEach(r => (byMonth[r.date.slice(0,7)] = byMonth[r.date.slice(0,7)] || []).push(r));
+  const monthInfo = [];
+
+  const sum = [[{ t:'s', v:'PEM TOURS & TRAVEL — LEDGER SUMMARY' }], [], ['MONTH','HIRES','DAYS','AMOUNT IN','AMOUNT OUT','BALANCE'].map(S)];
+  const monthSheets = Object.keys(byMonth).sort().map(m => {
+    const rows = byMonth[m], t = rows.length + 2, nm = monthLabel(m);
+    const ws = XLSX.utils.aoa_to_sheet([H, ...rows.map((r, i) => cells(r, i + 2)), totals(t, 'TOTAL')], { cellDates:true });
+    ws['!cols'] = widths;
+    monthInfo.push({ nm, t });
+    return [nm, ws];
+  });
+  const firstRow = sum.length + 1;
+  monthInfo.forEach(({ nm, t }) => sum.push([S(nm), { t:'n', f:`COUNTA('${nm}'!B2:B${t-1})` }, { t:'n', f:`'${nm}'!D${t}` },
+    { t:'n', f:`'${nm}'!G${t}`, z:'#,##0' }, { t:'n', f:`'${nm}'!H${t}`, z:'#,##0' }, { t:'n', f:`'${nm}'!I${t}`, z:'#,##0' }]));
+  const lastRow = sum.length;
+  sum.push([S('GRAND TOTAL'), ...['B','C','D','E','F'].map(c => ({ t:'n', f:`SUM(${c}${firstRow}:${c}${lastRow})`, z:'#,##0' }))], [], [S('BY VEHICLE (PLATE)')], ['PLATE','HIRES','DAYS','AMOUNT IN','AMOUNT OUT','BALANCE'].map(S));
+  const n = all.length + 1;
+  const plates = [...new Set(all.map(r => (r.plate || '').trim()).filter(Boolean))].sort();
+  plates.forEach(p => {
+    const r = sum.length + 1, rng = c => `ALL!$${c}$2:$${c}$${n}`;
+    sum.push([S(p), { t:'n', f:`COUNTIF(${rng('F')},A${r})` }, { t:'n', f:`SUMIF(${rng('F')},A${r},${rng('D')})` },
+      { t:'n', f:`SUMIF(${rng('F')},A${r},${rng('G')})`, z:'#,##0' }, { t:'n', f:`SUMIF(${rng('F')},A${r},${rng('H')})`, z:'#,##0' }, { t:'n', f:`D${r}-E${r}`, z:'#,##0' }]);
+  });
+  const sws = XLSX.utils.aoa_to_sheet(sum);
+  sws['!cols'] = [{ wch:24 }, { wch:10 }, { wch:10 }, { wch:14 }, { wch:14 }, { wch:14 }];
+  XLSX.utils.book_append_sheet(wb, sws, 'SUMMARY');
+  monthSheets.forEach(([nm, ws]) => XLSX.utils.book_append_sheet(wb, ws, nm));
+  const wsAll = XLSX.utils.aoa_to_sheet([H, ...all.map((r, i) => cells(r, i + 2)), totals(all.length + 2, 'TOTAL')], { cellDates:true });
+  wsAll['!cols'] = widths;
+  XLSX.utils.book_append_sheet(wb, wsAll, 'ALL');
+  XLSX.writeFile(wb, 'PEM_TOURS_ledger_' + new Date().toISOString().slice(0,10) + '.xlsx', { cellDates:true });
+  showToast('Excel download started');
+}
+
+document.querySelectorAll('.view-tab').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.toggle('active', b === btn));
+  document.getElementById('viewBookings').style.display = btn.dataset.view === 'bookings' ? '' : 'none';
+  document.getElementById('viewLedger').style.display = btn.dataset.view === 'ledger' ? '' : 'none';
+}));
+const ledgerBody = document.getElementById('ledgerBody');
+ledgerBody.addEventListener('input', updateLedgerTotals);
+ledgerBody.addEventListener('change', e => { if(e.target.matches('input[data-f]')) saveLedgerField(e.target); });
+ledgerBody.addEventListener('focusout', () => setTimeout(() => { if(ledgerPending && !ledgerBusy()){ ledgerPending = false; renderLedger(); } }, 60));
+ledgerBody.addEventListener('click', e => {
+  const b = e.target.closest('button[data-del]');
+  if(b && confirm('Delete this walk-in row?')) database.ref('ledger/' + b.dataset.del).remove().catch(err => showToast('Error: ' + err.message, true));
+});
+document.getElementById('ledgerMonth').addEventListener('change', renderLedger);
+document.getElementById('ledgerAddBtn').addEventListener('click', addLedgerRow);
+document.getElementById('ledgerXlsBtn').addEventListener('click', exportLedgerXlsx);
+
+/* ============================================================
+   AVAILABILITY — public "availability" node used by the website to
+   warn clients when a car is already hired (vehicle + dates only).
+   ============================================================ */
+let availBackfilled = false;
+function localYmd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+function availEntry(b){
+  if(!b || b.type !== 'carhire' || b.status !== 'Confirmed' || !b.startDate || !b.vehicle) return null;
+  let end = b.endDate;
+  if(!end || end <= b.startDate){ const x = new Date(b.startDate + 'T00:00:00'); x.setDate(x.getDate() + (Number(b.days) || 1)); end = localYmd(x); }
+  return { vehicle:b.vehicle, start:b.startDate, end, pickupTime:b.pickupTime || '', returnTime:b.returnTime || '' };
+}
+function syncAvailability(ref, status){
+  const b = allBookings[ref];
+  if(!database || !b || b.type !== 'carhire') return Promise.resolve();
+  const e = availEntry(Object.assign({}, b, { status }));
+  return e ? database.ref('availability/' + ref).set(e) : database.ref('availability/' + ref).remove();
+}
+function backfillAvailability(){
+  if(availBackfilled || !database) return;
+  availBackfilled = true;
+  const upd = {};
+  for(const ref in allBookings){ const e = availEntry(allBookings[ref]); if(e) upd['availability/' + ref] = e; }
+  if(Object.keys(upd).length) database.ref().update(upd).catch(err => console.warn('Availability sync:', err.message));
+}
+</script>
+
+</body>
+</html>
